@@ -1,0 +1,6 @@
+{
+  "name": "Gentleman Club",
+  "description": "Atelier Sartorial & Haute Confection 3D contemporain — GENTLEMAN CLUB.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
