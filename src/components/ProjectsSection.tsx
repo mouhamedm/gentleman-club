@@ -59,11 +59,11 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
         {/* Section Heading */}
         <FadeIn delay={0} y={30} className="w-full mb-16 sm:mb-20 md:mb-24 text-center">
           <div className="chrome-badge inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full text-[11px] font-mono uppercase tracking-[0.2em] text-[#5A554E] mb-4">
-            <Sparkles className="w-3.5 h-3.5 text-[#8C867C]" />
+            <Sparkles className="w-3.5 h-3.5 text-taupe" />
             <span>Grandes Séries • Silhouettes Exclusives</span>
           </div>
           <h2
-            className="font-serif-luxury font-light uppercase text-center leading-none tracking-tight text-[#141413] select-none"
+            className="font-serif-luxury font-light uppercase text-center leading-none tracking-tight text-obsidian select-none"
             style={{ fontSize: 'clamp(2.5rem, 8vw, 110px)' }}
           >
             Les Capsules

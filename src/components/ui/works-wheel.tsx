@@ -252,7 +252,7 @@ export function WorksWheel({
     <section
       aria-label={label}
       className={cn(
-        "relative h-full min-h-[30rem] w-full overflow-hidden select-none bg-transparent",
+        "relative h-full min-h-120 w-full overflow-hidden select-none bg-transparent",
         className,
       )}
       {...props}
@@ -263,7 +263,7 @@ export function WorksWheel({
         onClick={handlePrev}
         disabled={active === 0}
         title="Silhouette Précédente"
-        className="z-30 absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-[#D5CFBE] bg-[#FAF9F5]/90 backdrop-blur-md text-[#141413] hover:bg-[#141413] hover:text-[#FAF9F5] transition-all flex items-center justify-center cursor-pointer shadow-md hover:scale-105 active:scale-95 disabled:opacity-30 disabled:pointer-events-none"
+        className="z-30 absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-[#D5CFBE] bg-alabaster/90 backdrop-blur-md text-obsidian hover:bg-obsidian hover:text-alabaster transition-all flex items-center justify-center cursor-pointer shadow-md hover:scale-105 active:scale-95 disabled:opacity-30 disabled:pointer-events-none"
       >
         <ChevronLeft className="w-5 h-5" />
       </button>
@@ -274,7 +274,7 @@ export function WorksWheel({
         onClick={handleNext}
         disabled={active === last}
         title="Silhouette Suivante"
-        className="z-30 absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-[#D5CFBE] bg-[#FAF9F5]/90 backdrop-blur-md text-[#141413] hover:bg-[#141413] hover:text-[#FAF9F5] transition-all flex items-center justify-center cursor-pointer shadow-md hover:scale-105 active:scale-95 disabled:opacity-30 disabled:pointer-events-none"
+        className="z-30 absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-[#D5CFBE] bg-alabaster/90 backdrop-blur-md text-obsidian hover:bg-obsidian hover:text-alabaster transition-all flex items-center justify-center cursor-pointer shadow-md hover:scale-105 active:scale-95 disabled:opacity-30 disabled:pointer-events-none"
       >
         <ChevronRight className="w-5 h-5" />
       </button>
@@ -285,7 +285,7 @@ export function WorksWheel({
         tabIndex={0}
         role="region"
         aria-label="Grande Roue Sartoriale"
-        className="absolute inset-0 cursor-grab active:cursor-grabbing outline-none flex items-center justify-center [perspective:1400px] [transform-style:preserve-3d]"
+        className="absolute inset-0 cursor-grab active:cursor-grabbing outline-none flex items-center justify-center perspective-[1400px] transform-3d"
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
@@ -301,7 +301,7 @@ export function WorksWheel({
         }}
       >
         {/* Gondolas / Landscape Cards Container positioned at central origin */}
-        <div className="absolute top-1/2 left-1/2 [transform-style:preserve-3d]">
+        <div className="absolute top-1/2 left-1/2 transform-3d">
           {items.map((item, i) => {
             return (
               <div
@@ -319,7 +319,7 @@ export function WorksWheel({
                     to(i);
                   }
                 }}
-                className="group absolute [backface-visibility:hidden] cursor-pointer will-change-transform"
+                className="group absolute backface-hidden cursor-pointer will-change-transform"
                 style={{
                   width: metrics.cardW,
                   height: metrics.cardH,
@@ -349,8 +349,8 @@ export function WorksWheel({
       </div>
 
       {/* Front active item title at bottom left (only the title text) */}
-      <div className="pointer-events-none absolute left-[6%] sm:left-[8%] bottom-[5%] sm:bottom-[4.5%] max-w-[340px] sm:max-w-[460px] z-20">
-        <h2 className="font-serif-luxury text-xl sm:text-2xl md:text-3xl font-medium tracking-tight text-[#141413] leading-snug line-clamp-2">
+      <div className="pointer-events-none absolute left-[6%] sm:left-[8%] bottom-[5%] sm:bottom-[4.5%] max-w-85 sm:max-w-115 z-20">
+        <h2 className="font-serif-luxury text-xl sm:text-2xl md:text-3xl font-medium tracking-tight text-obsidian leading-snug line-clamp-2">
           {items[active]?.title}
         </h2>
       </div>

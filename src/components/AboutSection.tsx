@@ -11,7 +11,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onContactClick }) =>
   return (
     <section
       id="about"
-      className="relative min-h-screen w-full flex flex-col items-center justify-center px-6 sm:px-10 lg:px-14 py-28 sm:py-36 bg-[#FAF9F5] overflow-hidden select-none border-t border-[#EAE5D9]"
+      className="relative min-h-screen w-full flex flex-col items-center justify-center px-6 sm:px-10 lg:px-14 py-28 sm:py-36 bg-alabaster overflow-hidden select-none border-t border-[#EAE5D9]"
     >
       {/* Subtle luxury ambient backlight */}
       <div 
@@ -25,7 +25,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onContactClick }) =>
         {/* Top Atelier Badge */}
         <FadeIn delay={0.1} y={20}>
           <div className="chrome-badge inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full text-[11px] font-mono uppercase tracking-[0.24em] text-[#5A554E] mb-6">
-            <Sparkles className="w-3.5 h-3.5 text-[#8C867C]" />
+            <Sparkles className="w-3.5 h-3.5 text-taupe" />
             <span>Gentleman Club • Maison Sartoriale Paris</span>
           </div>
         </FadeIn>
@@ -33,7 +33,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onContactClick }) =>
         {/* Heading: "L'Atelier Sartorial" */}
         <FadeIn delay={0.2} y={30} className="w-full">
           <h2
-            className="font-serif-luxury font-light text-[#141413] leading-[0.95] tracking-tight text-center"
+            className="font-serif-luxury font-light text-obsidian leading-[0.95] tracking-tight text-center"
             style={{ fontSize: 'clamp(3rem, 9vw, 130px)' }}
           >
             L'Atelier Sartorial
@@ -54,10 +54,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onContactClick }) =>
         <FadeIn delay={0.4} y={30} className="w-full mt-14 sm:mt-16">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
             <div className="p-7 rounded-2xl bg-white/70 border border-[#E5DFCE] shadow-[0_8px_25px_-5px_rgba(30,24,18,0.04)] backdrop-blur-sm">
-              <div className="w-10 h-10 rounded-full border border-[#D5CFBE] bg-[#FAF9F5] flex items-center justify-center text-[#141413] mb-4">
-                <Scissors className="w-4 h-4 text-[#8C867C]" />
+              <div className="w-10 h-10 rounded-full border border-[#D5CFBE] bg-alabaster flex items-center justify-center text-obsidian mb-4">
+                <Scissors className="w-4 h-4 text-taupe" />
               </div>
-              <h3 className="font-serif-luxury text-xl font-normal text-[#141413] mb-2">
+              <h3 className="font-serif-luxury text-xl font-normal text-obsidian mb-2">
                 Coupe 140s & Entoilage
               </h3>
               <p className="font-sans-clean text-xs text-[#6B655C] leading-relaxed">
@@ -66,10 +66,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onContactClick }) =>
             </div>
 
             <div className="p-7 rounded-2xl bg-white/70 border border-[#E5DFCE] shadow-[0_8px_25px_-5px_rgba(30,24,18,0.04)] backdrop-blur-sm">
-              <div className="w-10 h-10 rounded-full border border-[#D5CFBE] bg-[#FAF9F5] flex items-center justify-center text-[#141413] mb-4">
-                <Gem className="w-4 h-4 text-[#8C867C]" />
+              <div className="w-10 h-10 rounded-full border border-[#D5CFBE] bg-alabaster flex items-center justify-center text-obsidian mb-4">
+                <Gem className="w-4 h-4 text-taupe" />
               </div>
-              <h3 className="font-serif-luxury text-xl font-normal text-[#141413] mb-2">
+              <h3 className="font-serif-luxury text-xl font-normal text-obsidian mb-2">
                 Bijouterie Chrome Miroir
               </h3>
               <p className="font-sans-clean text-xs text-[#6B655C] leading-relaxed">
@@ -78,10 +78,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onContactClick }) =>
             </div>
 
             <div className="p-7 rounded-2xl bg-white/70 border border-[#E5DFCE] shadow-[0_8px_25px_-5px_rgba(30,24,18,0.04)] backdrop-blur-sm">
-              <div className="w-10 h-10 rounded-full border border-[#D5CFBE] bg-[#FAF9F5] flex items-center justify-center text-[#141413] mb-4">
-                <Award className="w-4 h-4 text-[#8C867C]" />
+              <div className="w-10 h-10 rounded-full border border-[#D5CFBE] bg-alabaster flex items-center justify-center text-obsidian mb-4">
+                <Award className="w-4 h-4 text-taupe" />
               </div>
-              <h3 className="font-serif-luxury text-xl font-normal text-[#141413] mb-2">
+              <h3 className="font-serif-luxury text-xl font-normal text-obsidian mb-2">
                 Séries Confidentielles
               </h3>
               <p className="font-sans-clean text-xs text-[#6B655C] leading-relaxed">

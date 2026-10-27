@@ -1,6 +1,6 @@
 # GENTLEMAN CLUB — Atelier Sartorial & Haute Confection
 
-Une expérience e-commerce 3D haute couture contemporaine, alliant tailoring architectural, finitions chrome miroir et animations haute performance à 60/120 fps.
+A contemporary, high-end 3D e-commerce experience, combining architectural tailoring, mirror-chrome finishes, and high-performance animations at 60/120 fps.
 
 ## Technologies
 

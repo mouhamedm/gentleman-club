@@ -68,7 +68,7 @@ export const MarqueeSection: React.FC = () => {
       {/* Clean Editorial Header (No slashes, no tags) */}
       <div className="max-w-6xl mx-auto px-6 sm:px-10 mb-8 sm:mb-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
-          <h3 className="font-serif-luxury text-3xl sm:text-4xl md:text-5xl font-light tracking-tight text-[#141413]">
+          <h3 className="font-serif-luxury text-3xl sm:text-4xl md:text-5xl font-light tracking-tight text-obsidian">
             Le Mouvement Sartorial
           </h3>
         </div>
@@ -89,7 +89,7 @@ export const MarqueeSection: React.FC = () => {
           {row1Images.map((src, index) => (
             <div
               key={`row1-${index}`}
-              className="relative w-[340px] sm:w-[400px] h-[230px] sm:h-[265px] flex-shrink-0 rounded-2xl overflow-hidden bg-[#FAF8F5] border border-[#E4DEC3] shadow-[0_12px_32px_rgba(30,24,18,0.06)] group"
+              className="relative w-85 sm:w-100 h-45 sm:h-50 shrink-0 rounded-2xl overflow-hidden bg-[#FAF8F5] border border-[#E4DEC3] shadow-[0_12px_32px_rgba(30,24,18,0.06)] group"
             >
               <img
                 src={src}
@@ -98,7 +98,7 @@ export const MarqueeSection: React.FC = () => {
                 decoding="async"
                 className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#141413]/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex items-end p-4">
+              <div className="absolute inset-0 bg-linear-to-t from-obsidian/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex items-end p-4">
                 <span className="text-[11px] font-mono uppercase tracking-widest text-white/90">
                   Silhouette {String((index % 9) + 1).padStart(2, '0')}
                 </span>
@@ -118,7 +118,7 @@ export const MarqueeSection: React.FC = () => {
           {row2Images.map((src, index) => (
             <div
               key={`row2-${index}`}
-              className="relative w-[340px] sm:w-[400px] h-[230px] sm:h-[265px] flex-shrink-0 rounded-2xl overflow-hidden bg-[#FAF8F5] border border-[#E4DEC3] shadow-[0_12px_32px_rgba(30,24,18,0.06)] group"
+              className="relative w-85 sm:w-100 h-57.5 sm:h-50 shrink-0 rounded-2xl overflow-hidden bg-[#FAF8F5] border border-[#E4DEC3] shadow-[0_12px_32px_rgba(30,24,18,0.06)] group"
             >
               <img
                 src={src}
@@ -127,7 +127,7 @@ export const MarqueeSection: React.FC = () => {
                 decoding="async"
                 className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#141413]/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex items-end p-4">
+              <div className="absolute inset-0 bg-linear-to-t from-obsidian/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex items-end p-4">
                 <span className="text-[11px] font-mono uppercase tracking-widest text-white/90">
                   Finitions {String((index % 8) + 1).padStart(2, '0')}
                 </span>

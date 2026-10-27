@@ -45,7 +45,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
-          className="fixed inset-0 bg-[#141413]/70 backdrop-blur-md"
+          className="fixed inset-0 bg-obsidian/70 backdrop-blur-md"
         />
 
         {/* Modal Window */}
@@ -54,13 +54,13 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 25 }}
           transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-full max-w-4xl bg-[#FAF9F5] border border-[#E0DBCF] rounded-[32px] p-6 sm:p-9 shadow-[0_35px_90px_rgba(30,24,18,0.22)] z-10 my-8 max-h-[90vh] overflow-y-auto text-[#141413]"
+          className="relative w-full max-w-4xl bg-alabaster border border-[#E0DBCF] rounded-4xl p-6 sm:p-9 shadow-[0_35px_90px_rgba(30,24,18,0.22)] z-10 my-8 max-h-[90vh] overflow-y-auto text-obsidian"
         >
           {/* Close button */}
           <button
             type="button"
             onClick={onClose}
-            className="absolute top-6 right-6 text-[#8C867C] hover:text-[#141413] transition-colors p-2.5 rounded-full bg-white/70 border border-[#E2DDD2] hover:bg-white cursor-pointer z-20 shadow-xs"
+            className="absolute top-6 right-6 text-taupe hover:text-obsidian transition-colors p-2.5 rounded-full bg-white/70 border border-[#E2DDD2] hover:bg-white cursor-pointer z-20 shadow-xs"
           >
             <X className="w-5 h-5" />
           </button>
@@ -68,18 +68,18 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
             {/* Image Gallery */}
             <div className="space-y-4">
-              <div className="aspect-[3/4] rounded-2xl overflow-hidden bg-[#ECE8DF] border border-[#E0DBCF] relative shadow-sm">
+              <div className="aspect-3/4 rounded-2xl overflow-hidden bg-[#ECE8DF] border border-[#E0DBCF] relative shadow-sm">
                 <img
                   src={product.image}
                   alt={product.name}
                   className="w-full h-full object-cover"
                 />
-                <span className="absolute top-4 left-4 px-3.5 py-1.5 rounded-full text-[10px] font-mono uppercase tracking-wider bg-[#FAF9F5]/90 backdrop-blur-md text-[#141413] border border-[#D5CFBE] shadow-xs">
+                <span className="absolute top-4 left-4 px-3.5 py-1.5 rounded-full text-[10px] font-mono uppercase tracking-wider bg-alabaster/90 backdrop-blur-md text-obsidian border border-[#D5CFBE] shadow-xs">
                   {product.tag}
                 </span>
               </div>
               {product.hoverImage && (
-                <div className="aspect-[16/9] rounded-xl overflow-hidden bg-[#ECE8DF] border border-[#E0DBCF] shadow-xs">
+                <div className="aspect-video rounded-xl overflow-hidden bg-[#ECE8DF] border border-[#E0DBCF] shadow-xs">
                   <img
                     src={product.hoverImage}
                     alt={`${product.name} vue détail`}
@@ -93,19 +93,19 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             <div className="flex flex-col justify-between h-full pt-2">
               <div>
                 <div className="chrome-badge inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-[0.2em] text-[#5A554E] mb-3">
-                  <Sparkles className="w-3 h-3 text-[#8C867C]" />
+                  <Sparkles className="w-3 h-3 text-taupe" />
                   <span>{product.category}</span>
                 </div>
 
-                <h2 className="font-serif-luxury text-3xl sm:text-4xl font-normal text-[#141413] tracking-normal leading-tight">
+                <h2 className="font-serif-luxury text-3xl sm:text-4xl font-normal text-obsidian tracking-normal leading-tight">
                   {product.name}
                 </h2>
 
                 <div className="mt-3 flex items-baseline gap-3">
-                  <span className="font-serif-luxury text-3xl font-medium text-[#141413]">
+                  <span className="font-serif-luxury text-3xl font-medium text-obsidian">
                     {product.price} €
                   </span>
-                  <span className="text-xs text-[#8C867C] font-mono">
+                  <span className="text-xs text-taupe font-mono">
                     TVA incluse • Livraison atelier offerte
                   </span>
                 </div>
@@ -117,32 +117,32 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                 {/* Key specs breakdown */}
                 <div className="mt-6 p-4.5 rounded-2xl bg-white border border-[#E8E4DA] space-y-2.5 text-xs shadow-xs">
                   <div className="flex justify-between">
-                    <span className="text-[#8C867C] font-mono">Étoffe principale :</span>
-                    <span className="text-[#141413] font-medium">{product.specs.material}</span>
+                    <span className="text-taupe font-mono">Étoffe principale :</span>
+                    <span className="text-obsidian font-medium">{product.specs.material}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-[#8C867C] font-mono">Poids du drap :</span>
-                    <span className="text-[#141413] font-medium">{product.specs.weight}</span>
+                    <span className="text-taupe font-mono">Poids du drap :</span>
+                    <span className="text-obsidian font-medium">{product.specs.weight}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-[#8C867C] font-mono">Ligne de coupe :</span>
-                    <span className="text-[#141413] font-medium">{product.specs.fit}</span>
+                    <span className="text-taupe font-mono">Ligne de coupe :</span>
+                    <span className="text-obsidian font-medium">{product.specs.fit}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-[#8C867C] font-mono">Origine atelier :</span>
-                    <span className="text-[#141413] font-medium">{product.specs.origin}</span>
+                    <span className="text-taupe font-mono">Origine atelier :</span>
+                    <span className="text-obsidian font-medium">{product.specs.origin}</span>
                   </div>
                 </div>
 
                 {/* Garment Details List */}
                 <div className="mt-6">
-                  <h4 className="text-xs uppercase tracking-wider font-mono text-[#8C867C] mb-2.5">
+                  <h4 className="text-xs uppercase tracking-wider font-mono text-taupe mb-2.5">
                     Détails Sartoriaux & Finitions :
                   </h4>
                   <ul className="space-y-1.5 text-xs text-[#6B655C]">
                     {product.details.map((detail, idx) => (
                       <li key={idx} className="flex items-start gap-2.5">
-                        <span className="text-[#141413] font-bold mt-0.5">•</span>
+                        <span className="text-obsidian font-bold mt-0.5">•</span>
                         <span>{detail}</span>
                       </li>
                     ))}
@@ -154,8 +154,8 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
               <div className="mt-8 pt-6 border-t border-[#EAE5D9]">
                 <div className="mb-4">
                   <div className="flex justify-between items-center text-xs uppercase font-mono mb-2">
-                    <span className="text-[#8C867C]">Sélectionner la taille :</span>
-                    <span className="text-[#141413] font-bold">{currentSize}</span>
+                    <span className="text-taupe">Sélectionner la taille :</span>
+                    <span className="text-obsidian font-bold">{currentSize}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     {product.sizes.map((size) => (
@@ -163,10 +163,10 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                         key={size}
                         type="button"
                         onClick={() => setSelectedSize(size)}
-                        className={`min-w-[44px] h-10 px-3 rounded-xl text-xs font-mono font-medium transition-all cursor-pointer ${
+                        className={`min-w-11 h-10 px-3 rounded-xl text-xs font-mono font-medium transition-all cursor-pointer ${
                           currentSize === size
-                            ? 'bg-[#141413] text-[#FAF9F5] font-bold shadow-sm'
-                            : 'bg-white text-[#5A554E] hover:bg-[#EAE5D9] hover:text-[#141413] border border-[#E2DDD2]'
+                            ? 'bg-obsidian text-alabaster font-bold shadow-sm'
+                            : 'bg-white text-[#5A554E] hover:bg-[#EAE5D9] hover:text-obsidian border border-[#E2DDD2]'
                         }`}
                       >
                         {size}
@@ -182,7 +182,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                   className={`chrome-button-sheen w-full py-4 rounded-full text-xs font-sans-clean font-medium uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-md ${
                     isAdded
                       ? 'bg-[#2A4736] text-white'
-                      : 'bg-[#141413] text-[#FAF9F5] hover:bg-[#23211F]'
+                      : 'bg-obsidian text-alabaster hover:bg-[#23211F]'
                   }`}
                 >
                   {isAdded ? (
@@ -198,7 +198,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                   )}
                 </button>
 
-                <div className="mt-3.5 flex items-center justify-center gap-2 text-[10px] text-[#8C867C] uppercase tracking-widest font-mono">
+                <div className="mt-3.5 flex items-center justify-center gap-2 text-[10px] text-taupe uppercase tracking-widest font-mono">
                   <ShieldCheck className="w-3.5 h-3.5 text-[#2A4736]" />
                   <span>Série Limitée Numérotée • Expédition Sous Housse Protectrice</span>
                 </div>

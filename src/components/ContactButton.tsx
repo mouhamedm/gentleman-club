@@ -37,7 +37,7 @@ export const ContactButton: React.FC<ContactButtonProps> = ({
       onClick={onClick}
       whileHover={{ scale: 1.02, y: -1 }}
       whileTap={{ scale: 0.98 }}
-      className={`chrome-button-sheen relative inline-flex items-center justify-center rounded-full font-medium tracking-widest uppercase transition-all duration-300 cursor-pointer select-none px-8 py-3.5 sm:px-10 sm:py-4 text-xs sm:text-sm text-[#FAF9F5] bg-[#141413] hover:bg-[#23211F] shadow-[0_10px_30px_-5px_rgba(20,20,19,0.3)] hover:shadow-[0_14px_35px_-5px_rgba(20,20,19,0.45)] border border-[#3A3835]/40 ${className}`}
+      className={`chrome-button-sheen relative inline-flex items-center justify-center rounded-full font-medium tracking-widest uppercase transition-all duration-300 cursor-pointer select-none px-8 py-3.5 sm:px-10 sm:py-4 text-xs sm:text-sm text-alabaster bg-obsidian hover:bg-[#23211F] shadow-[0_10px_30px_-5px_rgba(20,20,19,0.3)] hover:shadow-[0_14px_35px_-5px_rgba(20,20,19,0.45)] border border-[#3A3835]/40 ${className}`}
     >
       {/* Specular Chrome Rim highlight */}
       <div className="absolute inset-0 rounded-full border border-white/20 pointer-events-none" />

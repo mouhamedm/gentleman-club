@@ -315,10 +315,10 @@ export const ShopSection: React.FC<ShopSectionProps> = ({ onQuickView }) => {
                   delay: (index % 4) * 0.1,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className="group flex flex-col bg-alabaster border border-[#E5DFCE] rounded-[24px] overflow-hidden hover:border-[#C5BDAA] hover:shadow-[0_20px_45px_-10px_rgba(30,24,18,0.14)] transition-all duration-300 shadow-[0_8px_25px_-5px_rgba(30,24,18,0.05)]"
+                className="group flex flex-col bg-alabaster border border-[#E5DFCE] rounded-3xl overflow-hidden hover:border-[#C5BDAA] hover:shadow-[0_20px_45px_-10px_rgba(30,24,18,0.14)] transition-all duration-300 shadow-[0_8px_25px_-5px_rgba(30,24,18,0.05)]"
               >
                 {/* Image Container with Hover reveal */}
-                <div className="relative aspect-[3/4] overflow-hidden bg-[#ECE8DF]">
+                <div className="relative aspect-3/4 overflow-hidden bg-[#ECE8DF]">
                   {/* Badge */}
                   <span className="absolute top-3.5 left-3.5 z-10 px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider bg-alabaster/90 backdrop-blur-md text-obsidian border border-[#D5CFBE] shadow-sm">
                     {product.tag}
@@ -343,7 +343,7 @@ export const ShopSection: React.FC<ShopSectionProps> = ({ onQuickView }) => {
                   )}
 
                   {/* Quick View Overlay Button */}
-                  <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-obsidian/60 via-obsidian/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div className="absolute inset-x-0 bottom-0 p-4 bg-linear-to-t from-obsidian/60 via-obsidian/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <button
                       type="button"
                       onClick={() => onQuickView(product)}
@@ -386,7 +386,7 @@ export const ShopSection: React.FC<ShopSectionProps> = ({ onQuickView }) => {
                           key={size}
                           type="button"
                           onClick={() => handleSelectSize(product.id, size)}
-                          className={`min-w-[32px] h-7 px-2.5 rounded-md text-[10px] font-mono transition-all cursor-pointer ${
+                          className={`min-w-8 h-7 px-2.5 rounded-md text-[10px] font-mono transition-all cursor-pointer ${
                             currentSize === size
                               ? 'bg-obsidian text-alabaster font-bold shadow-sm'
                               : 'bg-white text-[#5A554E] hover:bg-[#EAE5D9] hover:text-obsidian border border-[#E2DDD2]'

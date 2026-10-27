@@ -20,7 +20,7 @@ export const LiveProjectButton: React.FC<LiveProjectButtonProps> = ({
       onClick={onClick}
       whileHover={{ scale: 1.02, y: -1 }}
       whileTap={{ scale: 0.98 }}
-      className={`chrome-button-sheen rounded-full border border-[#D5CFBE] bg-[#FAF9F5] hover:bg-[#141413] text-[#141413] hover:text-[#FAF9F5] font-sans-clean font-medium uppercase tracking-[0.18em] transition-all duration-300 cursor-pointer select-none px-6 py-2.5 sm:px-8 sm:py-3 text-xs sm:text-[13px] shadow-sm hover:shadow-md ${className}`}
+      className={`chrome-button-sheen rounded-full border border-[#D5CFBE] bg-alabaster hover:bg-obsidian text-obsidian hover:text-alabaster font-sans-clean font-medium uppercase tracking-[0.18em] transition-all duration-300 cursor-pointer select-none px-6 py-2.5 sm:px-8 sm:py-3 text-xs sm:text-[13px] shadow-sm hover:shadow-md ${className}`}
     >
       {label}
     </motion.button>

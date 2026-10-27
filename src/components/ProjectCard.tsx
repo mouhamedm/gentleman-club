@@ -54,7 +54,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         style={{
           scale,
         }}
-        className="w-full max-w-6xl rounded-[32px] sm:rounded-[42px] border border-[#E5DFCE] bg-[#FAF9F5] p-5 sm:p-7 md:p-9 flex flex-col justify-between shadow-[0_24px_55px_-12px_rgba(30,24,18,0.12)] transition-shadow duration-300 hover:shadow-[0_32px_70px_-15px_rgba(30,24,18,0.18)]"
+        className="w-full max-w-6xl rounded-4xl sm:rounded-[42px] border border-[#E5DFCE] bg-alabaster p-5 sm:p-7 md:p-9 flex flex-col justify-between shadow-[0_24px_55px_-12px_rgba(30,24,18,0.12)] transition-shadow duration-300 hover:shadow-[0_32px_70px_-15px_rgba(30,24,18,0.18)]"
       >
         {/* Top Row */}
         <div className="flex flex-wrap items-center justify-between gap-4 pb-4 sm:pb-6 border-b border-[#EAE5D9]">
@@ -69,10 +69,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 
             {/* Category + Title */}
             <div className="flex flex-col">
-              <span className="text-[11px] sm:text-xs uppercase tracking-[0.2em] text-[#8C867C] font-mono mb-0.5">
+              <span className="text-[11px] sm:text-xs uppercase tracking-[0.2em] text-taupe font-mono mb-0.5">
                 {project.category}
               </span>
-              <h3 className="font-serif-luxury text-xl sm:text-2xl md:text-3xl font-medium text-[#141413] tracking-normal">
+              <h3 className="font-serif-luxury text-xl sm:text-2xl md:text-3xl font-medium text-obsidian tracking-normal">
                 {project.title}
               </h3>
             </div>
@@ -115,7 +115,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           {/* Right Column (60% width) */}
           <div className="md:col-span-6 flex">
             <div
-              className="w-full h-full min-h-[250px] md:min-h-[350px] overflow-hidden rounded-[20px] sm:rounded-[28px] bg-[#ECE8DF] border border-[#E0DBCF] cursor-pointer group"
+              className="w-full h-full min-h-62.5 md:min-h-87.5 overflow-hidden rounded-[20px] sm:rounded-[28px] bg-[#ECE8DF] border border-[#E0DBCF] cursor-pointer group"
               onClick={() => onSelectProject(project)}
             >
               <img

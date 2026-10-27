@@ -65,7 +65,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   const { cartCount, openCart } = useCart();
 
   return (
-    <section className="relative w-full h-screen min-h-[640px] flex flex-col justify-between overflow-hidden bg-[#F7F5F0] select-none text-[#1A1918]">
+    <section className="relative w-full h-screen min-h-160 flex flex-col justify-between overflow-hidden bg-[#F7F5F0] select-none text-[#1A1918]">
       {/* Subtle luxury ambient backlight */}
       <div
         className="absolute inset-0 pointer-events-none opacity-50"
@@ -107,10 +107,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="group cursor-pointer inline-flex flex-col items-center border-0 bg-transparent"
           >
-            <span className="font-serif-luxury text-xl sm:text-2xl md:text-3xl font-semibold tracking-[0.2em] text-[#141413] group-hover:opacity-80 transition-opacity whitespace-nowrap">
+            <span className="font-serif-luxury text-xl sm:text-2xl md:text-3xl font-semibold tracking-[0.2em] text-obsidian group-hover:opacity-80 transition-opacity whitespace-nowrap">
               GENTLEMAN CLUB
             </span>
-            <span className="text-[9px] font-sans-clean uppercase tracking-[0.32em] text-[#8C867C] -mt-0.5">
+            <span className="text-[9px] font-sans-clean uppercase tracking-[0.32em] text-taupe -mt-0.5">
               Atelier Sartorial
             </span>
           </button>
@@ -138,11 +138,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             onClick={openCart}
             className="chrome-badge flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[#1A1918] font-sans-clean font-medium uppercase tracking-wider text-xs transition-all duration-300 hover:scale-[1.02] cursor-pointer"
           >
-            <ShoppingBag className="w-3.5 h-3.5 text-[#141413]" />
+            <ShoppingBag className="w-3.5 h-3.5 text-obsidian" />
             <span className="text-[11px] tracking-wider hidden sm:inline">
               Panier
             </span>
-            <span className="w-4 h-4 rounded-full bg-[#141413] text-[#FAF9F5] text-[10px] font-bold flex items-center justify-center">
+            <span className="w-4 h-4 rounded-full bg-obsidian text-alabaster text-[10px] font-bold flex items-center justify-center">
               {cartCount}
             </span>
           </button>
@@ -169,7 +169,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           type="button"
           onClick={() => onNavigate("shop")}
           whileHover={{ y: 2 }}
-          className="flex flex-col items-center gap-1.5 text-[#8C867C] hover:text-[#141413] transition-colors cursor-pointer group mx-auto md:mx-0"
+          className="flex flex-col items-center gap-1.5 text-taupe hover:text-obsidian transition-colors cursor-pointer group mx-auto md:mx-0"
         >
           <span className="text-[10px] font-mono uppercase tracking-[0.25em]">
             Découvrir le Vestiaire

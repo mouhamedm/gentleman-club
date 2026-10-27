@@ -25,7 +25,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
-          className="fixed inset-0 bg-[#141413]/70 backdrop-blur-md"
+          className="fixed inset-0 bg-obsidian/70 backdrop-blur-md"
         />
 
         {/* Modal Window */}
@@ -34,13 +34,13 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 25 }}
           transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-full max-w-5xl bg-[#FAF9F5] border border-[#E0DBCF] rounded-[32px] p-6 sm:p-10 shadow-[0_35px_90px_rgba(30,24,18,0.22)] z-10 my-8 max-h-[90vh] overflow-y-auto text-[#141413]"
+          className="relative w-full max-w-5xl bg-alabaster border border-[#E0DBCF] rounded-4xl p-6 sm:p-10 shadow-[0_35px_90px_rgba(30,24,18,0.22)] z-10 my-8 max-h-[90vh] overflow-y-auto text-obsidian"
         >
           {/* Close button */}
           <button
             type="button"
             onClick={onClose}
-            className="absolute top-6 right-6 text-[#8C867C] hover:text-[#141413] transition-colors p-2.5 rounded-full bg-white/70 border border-[#E2DDD2] hover:bg-white cursor-pointer z-20 shadow-xs"
+            className="absolute top-6 right-6 text-taupe hover:text-obsidian transition-colors p-2.5 rounded-full bg-white/70 border border-[#E2DDD2] hover:bg-white cursor-pointer z-20 shadow-xs"
           >
             <X className="w-5 h-5" />
           </button>
@@ -53,12 +53,12 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                   {project.category}
                 </span>
                 {project.year && (
-                  <span className="font-mono text-xs text-[#8C867C] tracking-wider uppercase">
+                  <span className="font-mono text-xs text-taupe tracking-wider uppercase">
                     Collection {project.year}
                   </span>
                 )}
               </div>
-              <h2 className="font-serif-luxury text-3xl sm:text-5xl font-normal text-[#141413] tracking-normal">
+              <h2 className="font-serif-luxury text-3xl sm:text-5xl font-normal text-obsidian tracking-normal">
                 {project.number} &mdash; {project.title}
               </h2>
             </div>
@@ -72,7 +72,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                   shopEl.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
-              className="chrome-button-sheen inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#141413] text-[#FAF9F5] text-xs font-sans-clean font-medium uppercase tracking-wider hover:bg-[#23211F] transition-all cursor-pointer shadow-sm"
+              className="chrome-button-sheen inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-obsidian text-alabaster text-xs font-sans-clean font-medium uppercase tracking-wider hover:bg-[#23211F] transition-all cursor-pointer shadow-sm"
             >
               <span>Voir le Vestiaire</span>
               <ExternalLink className="w-3.5 h-3.5" />
@@ -82,7 +82,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
           {/* Description & Specs */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 py-6 border-b border-[#EAE5D9]">
             <div className="md:col-span-2">
-              <h4 className="text-xs uppercase tracking-[0.2em] text-[#8C867C] mb-2 font-mono">
+              <h4 className="text-xs uppercase tracking-[0.2em] text-taupe mb-2 font-mono">
                 Architecture de Coupe & Drapé
               </h4>
               <p className="font-sans-clean text-[#5A554E] text-sm sm:text-base font-light leading-relaxed">
@@ -90,16 +90,16 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
               </p>
             </div>
             <div>
-              <h4 className="text-xs uppercase tracking-[0.2em] text-[#8C867C] mb-2 font-mono">
+              <h4 className="text-xs uppercase tracking-[0.2em] text-taupe mb-2 font-mono">
                 Matières Nobles & Métaux
               </h4>
               <div className="flex flex-wrap gap-2">
                 {project.tools?.map((tool, idx) => (
                   <span
                     key={idx}
-                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white border border-[#E2DDD2] text-xs text-[#141413] font-mono shadow-xs"
+                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white border border-[#E2DDD2] text-xs text-obsidian font-mono shadow-xs"
                   >
-                    <Box className="w-3 h-3 text-[#8C867C]" />
+                    <Box className="w-3 h-3 text-taupe" />
                     {tool}
                   </span>
                 ))}
@@ -109,7 +109,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
 
           {/* Image Showcase Grid */}
           <div className="pt-6 space-y-6">
-            <h4 className="text-xs uppercase tracking-[0.2em] text-[#8C867C] font-mono">
+            <h4 className="text-xs uppercase tracking-[0.2em] text-taupe font-mono">
               Lookbook Éditorial & Silhouettes
             </h4>
 
@@ -118,7 +118,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
               <img
                 src={project.col2Img}
                 alt={`${project.title} vue d'ensemble`}
-                className="w-full h-auto object-cover max-h-[580px]"
+                className="w-full h-auto object-cover max-h-145"
               />
             </div>
 
@@ -128,14 +128,14 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                 <img
                   src={project.col1Img1}
                   alt={`${project.title} détail atelier`}
-                  className="w-full h-auto object-cover max-h-[360px]"
+                  className="w-full h-auto object-cover max-h-90"
                 />
               </div>
               <div className="rounded-2xl overflow-hidden border border-[#E0DBCF] shadow-sm bg-[#ECE8DF]">
                 <img
                   src={project.col1Img2}
                   alt={`${project.title} tombé d'étoffe`}
-                  className="w-full h-auto object-cover max-h-[360px]"
+                  className="w-full h-auto object-cover max-h-90"
                 />
               </div>
             </div>

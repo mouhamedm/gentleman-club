@@ -45,18 +45,18 @@ export const ServicesSection: React.FC = () => {
   return (
     <section
       id="services"
-      className="relative w-full bg-[#FFFFFF] text-[#141413] rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] px-6 sm:px-10 lg:px-14 py-24 sm:py-32 z-0 border-t border-[#EAE5D9]"
+      className="relative w-full bg-[#FFFFFF] text-obsidian rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] px-6 sm:px-10 lg:px-14 py-24 sm:py-32 z-0 border-t border-[#EAE5D9]"
     >
       <div className="max-w-5xl mx-auto w-full">
         {/* Section Heading */}
         <FadeIn delay={0} y={30}>
           <div className="text-center mb-16 sm:mb-20 md:mb-24">
             <div className="chrome-badge inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full text-[11px] font-mono uppercase tracking-[0.22em] text-[#5A554E] mb-4">
-              <Sparkles className="w-3.5 h-3.5 text-[#8C867C]" />
+              <Sparkles className="w-3.5 h-3.5 text-taupe" />
               <span>Savoir-Faire & Standards d'Excellence</span>
             </div>
             <h2
-              className="font-serif-luxury font-light uppercase leading-none tracking-tight text-center text-[#141413]"
+              className="font-serif-luxury font-light uppercase leading-none tracking-tight text-center text-obsidian"
               style={{ fontSize: 'clamp(2.5rem, 8vw, 110px)' }}
             >
               Le Savoir-Faire
@@ -71,12 +71,12 @@ export const ServicesSection: React.FC = () => {
               key={service.id}
               delay={index * 0.08}
               y={20}
-              className="border-b border-[#EAE5D9] py-8 sm:py-10 md:py-12 group transition-colors duration-300 hover:bg-[#FAF9F5]/80 px-4 rounded-xl"
+              className="border-b border-[#EAE5D9] py-8 sm:py-10 md:py-12 group transition-colors duration-300 hover:bg-alabaster/80 px-4 rounded-xl"
             >
               <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 sm:gap-8 md:gap-12">
                 {/* Number on left */}
                 <div
-                  className="font-serif-luxury font-light italic text-[#C5BDAA] leading-none shrink-0 w-20 sm:w-28 md:w-36 select-none group-hover:text-[#141413] transition-colors"
+                  className="font-serif-luxury font-light italic text-[#C5BDAA] leading-none shrink-0 w-20 sm:w-28 md:w-36 select-none group-hover:text-obsidian transition-colors"
                   style={{ fontSize: 'clamp(2.5rem, 6vw, 90px)' }}
                 >
                   {service.id}
@@ -85,7 +85,7 @@ export const ServicesSection: React.FC = () => {
                 {/* Name + Description on right */}
                 <div className="flex-1 flex flex-col justify-center sm:pt-2">
                   <h3
-                    className="font-serif-luxury font-normal text-[#141413] tracking-wide group-hover:translate-x-1 transition-transform duration-300"
+                    className="font-serif-luxury font-normal text-obsidian tracking-wide group-hover:translate-x-1 transition-transform duration-300"
                     style={{ fontSize: 'clamp(1.2rem, 2.2vw, 1.85rem)' }}
                   >
                     {service.name}
