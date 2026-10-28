@@ -252,7 +252,7 @@ export function WorksWheel({
     <section
       aria-label={label}
       className={cn(
-        "relative h-full min-h-120 w-full overflow-hidden select-none bg-transparent",
+        "relative h-full min-h-120 w-full overflow-hidden bg-transparent",
         className,
       )}
       {...props}

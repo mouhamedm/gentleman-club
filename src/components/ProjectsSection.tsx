@@ -109,7 +109,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             <span>Grandes Séries • Silhouettes Exclusives</span>
           </div>
           <h2
-            className="font-serif-luxury font-light uppercase text-center leading-none tracking-tight text-obsidian select-none"
+            className="font-serif-luxury font-light uppercase text-center leading-none tracking-tight text-obsidian"
             style={{ fontSize: "clamp(2.5rem, 8vw, 110px)" }}
           >
             Les Capsules

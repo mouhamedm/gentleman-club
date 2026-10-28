@@ -5,6 +5,7 @@ import {
   animate,
   motion,
   useMotionValue,
+  useMotionValueEvent,
   useReducedMotion,
   useTransform,
   type MotionValue,
@@ -128,26 +129,34 @@ export function HaloReel({
   const cardW = cardWidth * fit;
   const cardH = cardHeight * fit;
 
-  /* ── Suivi de la carte active au premier plan (theta = 0) ─── */
-  React.useEffect(() => {
-    if (!step || !slots || !count) return;
-
-    const updateActive = (r: number) => {
-      const normalized = -r / step;
+  /* ── Suivi de l'index de la carte au premier plan ─────────── */
+  const getActiveItemIndex = React.useCallback(
+    (rot: number) => {
+      if (!step || !slots || !count) return 0;
+      const normalized = -rot / step;
       const nearestSlot = ((Math.round(normalized) % slots) + slots) % slots;
-      const itemIndex = nearestSlot % count;
-      setActiveIndex((prev) => {
-        if (prev !== itemIndex) {
-          onActiveItemChange?.(items[itemIndex], itemIndex);
-          return itemIndex;
-        }
-        return prev;
-      });
-    };
+      return nearestSlot % count;
+    },
+    [step, slots, count],
+  );
 
-    updateActive(rotation.get());
-    return rotation.on("change", updateActive);
-  }, [step, slots, count, rotation, items, onActiveItemChange]);
+  useMotionValueEvent(rotation, "change", (latest) => {
+    const itemIndex = getActiveItemIndex(latest);
+    setActiveIndex((prev) => {
+      if (prev !== itemIndex) {
+        onActiveItemChange?.(items[itemIndex], itemIndex);
+        return itemIndex;
+      }
+      return prev;
+    });
+  });
+
+  // Check initial index
+  React.useEffect(() => {
+    const initIdx = getActiveItemIndex(rotation.get());
+    setActiveIndex(initIdx);
+    onActiveItemChange?.(items[initIdx], initIdx);
+  }, [getActiveItemIndex, rotation, items, onActiveItemChange]);
 
   /* ── Autoplay ──────────────────────────────────────────────── */
   React.useEffect(() => {
@@ -198,6 +207,11 @@ export function HaloReel({
   };
 
   const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    // Si l'utilisateur clique sur un bouton interactif, ne pas détourner vers le drag !
+    const targetEl = e.target as HTMLElement;
+    if (targetEl.closest("button, a, input, select")) {
+      return;
+    }
     if (!draggable || (e.pointerType === "mouse" && e.button !== 0)) return;
     const rect = e.currentTarget.getBoundingClientRect();
     dragRef.current = { left: rect.left, top: rect.top, angle: 0 };
@@ -252,7 +266,7 @@ export function HaloReel({
     spinBy(direction);
   };
 
-  /* ── Clic sur une carte : la fait pivoter pour venir au milieu ── */
+  /* ── Clic sur une carte : l'amène devant ET fait sortir ses infos ─ */
   const handleCardClick = (slotIndex: number) => {
     if (hasDraggedRef.current) return;
 
@@ -262,27 +276,20 @@ export function HaloReel({
     const shortestDiff = ((diff + Math.PI * 3) % TAU) - Math.PI;
     const target = currentRot + shortestDiff;
 
-    const currentAngle = ((slotIndex * step + currentRot) % TAU + TAU) % TAU;
-    const normalizedAngle =
-      currentAngle > Math.PI ? currentAngle - TAU : currentAngle;
-    const isAlreadyFront = Math.abs(normalizedAngle) < step * 0.45;
-
-    if (!isAlreadyFront) {
-      // La carte n'est pas devant : on la fait pivoter au premier plan !
-      if (reduceMotion) {
-        rotation.set(target);
-      } else {
-        animate(rotation, target, {
-          duration: 0.65,
-          ease: [0.16, 1, 0.3, 1],
-        });
-      }
+    // Fait tourner la carte vers le devant
+    if (reduceMotion) {
+      rotation.set(target);
     } else {
-      // Déjà au premier plan : ouvre les détails
-      const item = items[slotIndex % count];
-      if (item && item.onClick) {
-        item.onClick();
-      }
+      animate(rotation, target, {
+        duration: 0.55,
+        ease: [0.16, 1, 0.3, 1],
+      });
+    }
+
+    // Déclenche l'affichage immédiat des informations du produit
+    const item = items[slotIndex % count];
+    if (item && item.onClick) {
+      item.onClick();
     }
   };
 
@@ -301,7 +308,7 @@ export function HaloReel({
       onPointerUp={endDrag}
       onPointerCancel={endDrag}
       className={cn(
-        "relative h-dvh w-full touch-pan-y select-none overflow-hidden outline-none",
+        "relative h-dvh w-full touch-pan-y overflow-hidden outline-none",
         draggable && "cursor-grab active:cursor-grabbing",
         "focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset",
         className,
@@ -309,10 +316,10 @@ export function HaloReel({
       style={style}
       {...props}
     >
-      {/* Côté droit : bloc de texte et bouton Commander */}
+      {/* Panneau de droite : Textes + Bouton Commander */}
       {showCenterLabel && centerLabel ? (
         <div
-          className="pointer-events-none absolute inset-y-0 z-20 flex items-center justify-center px-6 sm:px-10 text-center"
+          className="pointer-events-none absolute inset-y-0 z-30 flex items-center justify-center px-6 sm:px-10 text-center"
           style={{
             left: size.w * centerXRatio + radiusX + cardW / 2,
             right: 0,
@@ -399,7 +406,8 @@ function WheelCard({
       aria-hidden={decorative || undefined}
       onPointerEnter={() => onHoverChange(true)}
       onPointerLeave={() => onHoverChange(false)}
-      onClick={() => {
+      onClick={(e) => {
+        e.stopPropagation();
         onCardClick(index);
       }}
       style={{

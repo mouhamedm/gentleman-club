@@ -252,10 +252,12 @@ export const ShopSection: React.FC<ShopSectionProps> = ({ onQuickView }) => {
     }));
   }, [filteredProducts, onQuickView]);
 
+  const [activeIdx, setActiveIdx] = useState(0);
+
   return (
     <section
       id="shop"
-      className="relative w-full bg-[#F7F5F0] pt-16 sm:pt-24 pb-12 sm:pb-16 select-none border-t border-[#EAE5D9] overflow-hidden"
+      className="relative w-full bg-[#F7F5F0] pt-16 sm:pt-24 pb-12 sm:pb-16 border-t border-[#EAE5D9] overflow-hidden"
     >
       {/* Section Header */}
       <div className="w-full px-6 sm:px-10 text-center max-w-4xl mx-auto mb-6 sm:mb-8">
@@ -279,7 +281,10 @@ export const ShopSection: React.FC<ShopSectionProps> = ({ onQuickView }) => {
           <button
             key={cat.value}
             type="button"
-            onClick={() => setSelectedCategory(cat.value)}
+            onClick={() => {
+              setSelectedCategory(cat.value);
+              setActiveIdx(0);
+            }}
             className={`px-4 py-2 rounded-full text-xs font-sans-clean font-medium uppercase tracking-wider transition-all duration-300 shrink-0 cursor-pointer ${
               selectedCategory === cat.value
                 ? "bg-obsidian text-alabaster shadow-md scale-[1.02]"
@@ -305,34 +310,58 @@ export const ShopSection: React.FC<ShopSectionProps> = ({ onQuickView }) => {
         <HaloReel
           items={haloItems}
           aria-label="Le Vestiaire d'Exception"
-          centerLabel={(activeItem) => (
-            <div className="flex flex-col items-center justify-center text-center max-w-sm sm:max-w-md">
-              <span className="font-serif-luxury text-4xl sm:text-6xl md:text-7xl font-medium tracking-tight text-obsidian uppercase">
-                Atelier
-              </span>
-              <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.38em] text-taupe mt-2">
-                Haute Confection
-              </span>
-              <span className="text-xs text-[#7A746B] font-sans-clean mt-3 max-w-xs leading-relaxed">
-                Glissez pour faire pivoter la roue • Cliquez sur une pièce pour
-                essayer
-              </span>
+          onActiveItemChange={(_, idx) => setActiveIdx(idx)}
+          centerLabel={(activeItem) => {
+            const currentItem = activeItem || haloItems[activeIdx % haloItems.length] || haloItems[0];
+            return (
+              <div className="flex flex-col items-center justify-center text-center max-w-sm sm:max-w-md">
+                <span className="font-serif-luxury text-4xl sm:text-6xl md:text-7xl font-medium tracking-tight text-obsidian uppercase">
+                  Atelier
+                </span>
+                <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.38em] text-taupe mt-2">
+                  Haute Confection
+                </span>
 
-              {/* Bouton Commander pour la carte au milieu / premier plan */}
-              <button
-                type="button"
-                onClick={() => {
-                  if (activeItem?.onClick) {
-                    activeItem.onClick();
-                  }
-                }}
-                className="mt-6 px-8 py-3.5 rounded-full bg-obsidian text-alabaster font-sans-clean text-xs font-medium uppercase tracking-[0.2em] hover:bg-[#2A2826] hover:scale-105 active:scale-95 transition-all shadow-md hover:shadow-xl flex items-center gap-2.5 cursor-pointer border border-[#1A1918]"
-              >
-                <ShoppingBag className="w-3.5 h-3.5 text-alabaster" />
-                <span>Commander</span>
-              </button>
-            </div>
-          )}
+                {/* Nom et prix du produit au milieu */}
+                {currentItem?.title && (
+                  <div className="mt-3.5 px-4 py-1 rounded-full bg-white/70 backdrop-blur-xs border border-[#D5CFBE] text-obsidian shadow-2xs">
+                    <span className="font-serif-luxury text-xs sm:text-sm font-medium">
+                      {currentItem.title}
+                    </span>
+                    {currentItem.price !== undefined && (
+                      <span className="ml-2 font-mono text-xs text-[#7A746B] font-semibold">
+                        • {currentItem.price} €
+                      </span>
+                    )}
+                  </div>
+                )}
+
+                <span className="text-xs text-[#7A746B] font-sans-clean mt-3 max-w-xs leading-relaxed">
+                  Glissez pour faire pivoter la roue • Cliquez sur une pièce pour
+                  essayer
+                </span>
+
+                {/* Bouton Commander pour la carte au milieu / premier plan */}
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (currentItem?.onClick) {
+                      currentItem.onClick();
+                    } else {
+                      const prod = filteredProducts[activeIdx % filteredProducts.length] || filteredProducts[0];
+                      if (prod) onQuickView(prod);
+                    }
+                  }}
+                  className="mt-6 px-8 py-3.5 rounded-full bg-obsidian text-alabaster font-sans-clean text-xs font-medium uppercase tracking-[0.2em] hover:bg-[#2A2826] hover:scale-105 active:scale-95 transition-all shadow-md hover:shadow-xl flex items-center gap-2.5 cursor-pointer border border-[#1A1918]"
+                >
+                  <ShoppingBag className="w-3.5 h-3.5 text-alabaster" />
+                  <span>Commander</span>
+                </button>
+              </div>
+            );
+          }}
           cardWidth={260}
           cardHeight={370}
           minScale={0.34}
@@ -340,7 +369,7 @@ export const ShopSection: React.FC<ShopSectionProps> = ({ onQuickView }) => {
           radiusYRatio={0.28}
           spread={1.15}
           centerXRatio={0}
-          holdDuration={1400}
+          holdDuration={1600}
           stepDuration={700}
           autoPlay={true}
           draggable={true}

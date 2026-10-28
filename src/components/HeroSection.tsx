@@ -65,7 +65,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   const { cartCount, openCart } = useCart();
 
   return (
-    <section className="relative w-full h-screen min-h-160 flex flex-col justify-between overflow-hidden bg-[#F7F5F0] select-none text-[#1A1918]">
+    <section className="relative w-full h-screen min-h-160 flex flex-col justify-between overflow-hidden bg-[#F7F5F0] text-[#1A1918]">
       {/* Subtle luxury ambient backlight */}
       <div
         className="absolute inset-0 pointer-events-none opacity-50"

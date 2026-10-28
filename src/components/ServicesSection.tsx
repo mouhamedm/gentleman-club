@@ -76,7 +76,7 @@ export const ServicesSection: React.FC = () => {
               <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 sm:gap-8 md:gap-12">
                 {/* Number on left */}
                 <div
-                  className="font-serif-luxury font-light italic text-[#C5BDAA] leading-none shrink-0 w-20 sm:w-28 md:w-36 select-none group-hover:text-obsidian transition-colors"
+                  className="font-serif-luxury font-light italic text-[#C5BDAA] leading-none shrink-0 w-20 sm:w-28 md:w-36 group-hover:text-obsidian transition-colors"
                   style={{ fontSize: 'clamp(2.5rem, 6vw, 90px)' }}
                 >
                   {service.id}

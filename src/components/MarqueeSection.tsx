@@ -63,7 +63,7 @@ export const MarqueeSection: React.FC = () => {
     <section
       ref={sectionRef}
       id="marquee"
-      className="w-full bg-[#F7F5F0] pt-16 sm:pt-24 pb-16 overflow-hidden select-none border-t border-[#EAE5D9]"
+      className="w-full bg-[#F7F5F0] pt-16 sm:pt-24 pb-16 overflow-hidden border-t border-[#EAE5D9]"
     >
       {/* Clean Editorial Header (No slashes, no tags) */}
       <div className="max-w-6xl mx-auto px-6 sm:px-10 mb-8 sm:mb-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4">

@@ -12,7 +12,7 @@ export const Footer: React.FC<FooterProps> = ({ onContactClick }) => {
   };
 
   return (
-    <footer className="relative z-20 w-full bg-obsidian text-alabaster border-t border-[#2A2826] pt-24 pb-14 px-6 sm:px-10 lg:px-14 select-none">
+    <footer className="relative z-20 w-full bg-obsidian text-alabaster border-t border-[#2A2826] pt-24 pb-14 px-6 sm:px-10 lg:px-14">
       <div className="max-w-6xl mx-auto flex flex-col justify-between">
         <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-10 pb-16 border-b border-[#2A2826]">
           <div>

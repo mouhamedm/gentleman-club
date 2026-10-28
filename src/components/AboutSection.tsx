@@ -11,7 +11,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onContactClick }) =>
   return (
     <section
       id="about"
-      className="relative min-h-screen w-full flex flex-col items-center justify-center px-6 sm:px-10 lg:px-14 py-28 sm:py-36 bg-alabaster overflow-hidden select-none border-t border-[#EAE5D9]"
+      className="relative min-h-screen w-full flex flex-col items-center justify-center px-6 sm:px-10 lg:px-14 py-28 sm:py-36 bg-alabaster overflow-hidden border-t border-[#EAE5D9]"
     >
       {/* Subtle luxury ambient backlight */}
       <div 

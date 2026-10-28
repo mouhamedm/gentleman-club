@@ -38,110 +38,111 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-        {/* Backdrop */}
+      <div className="fixed inset-0 z-50 overflow-hidden">
+        {/* Backdrop sombre avec flou */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
-          className="fixed inset-0 bg-obsidian/70 backdrop-blur-md"
+          className="fixed inset-0 bg-obsidian/60 backdrop-blur-sm cursor-pointer"
         />
 
-        {/* Modal Window */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 25 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 25 }}
-          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-full max-w-4xl bg-alabaster border border-[#E0DBCF] rounded-4xl p-6 sm:p-9 shadow-[0_35px_90px_rgba(30,24,18,0.22)] z-10 my-8 max-h-[90vh] overflow-y-auto text-obsidian"
-        >
-          {/* Close button */}
-          <button
-            type="button"
-            onClick={onClose}
-            className="absolute top-6 right-6 text-taupe hover:text-obsidian transition-colors p-2.5 rounded-full bg-white/70 border border-[#E2DDD2] hover:bg-white cursor-pointer z-20 shadow-xs"
+        {/* Drawer compact qui glisse de la droite vers la gauche */}
+        <div className="fixed inset-y-0 right-0 max-w-full flex pl-6 sm:pl-10 pointer-events-none">
+          <motion.div
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{ type: 'spring', damping: 32, stiffness: 320 }}
+            className="w-screen max-w-md bg-alabaster border-l border-[#E2DDD2] flex flex-col shadow-[-20px_0_60px_rgba(20,16,12,0.25)] text-obsidian h-full overflow-hidden pointer-events-auto"
           >
-            <X className="w-5 h-5" />
-          </button>
+            {/* Header compact du tiroir */}
+            <div className="px-5 py-4 border-b border-[#EAE5D9] flex items-center justify-between bg-white/70 backdrop-blur-xs sticky top-0 z-20">
+              <div className="flex items-center gap-2.5">
+                <span className="font-serif-luxury font-medium text-xl text-obsidian">
+                  Fiche de Confection
+                </span>
+                <span className="px-2 py-0.5 rounded-full text-[9px] font-mono uppercase bg-[#EAE5D9] text-obsidian font-semibold tracking-wider">
+                  {product.tag}
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={onClose}
+                className="p-1.5 text-taupe hover:text-obsidian transition-colors rounded-full hover:bg-black/5 cursor-pointer"
+                aria-label="Fermer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-            {/* Image Gallery */}
-            <div className="space-y-4">
-              <div className="aspect-3/4 rounded-2xl overflow-hidden bg-[#ECE8DF] border border-[#E0DBCF] relative shadow-sm">
+            {/* Contenu compact avec défilement fluide */}
+            <div className="flex-1 overflow-y-auto px-5 py-5 space-y-5">
+              {/* Image unique bien proportionnée (pas deux) */}
+              <div className="relative w-full h-64 sm:h-72 rounded-2xl overflow-hidden bg-[#ECE8DF] border border-[#E0DBCF] shadow-xs">
                 <img
                   src={product.image}
                   alt={product.name}
                   className="w-full h-full object-cover"
                 />
-                <span className="absolute top-4 left-4 px-3.5 py-1.5 rounded-full text-[10px] font-mono uppercase tracking-wider bg-alabaster/90 backdrop-blur-md text-obsidian border border-[#D5CFBE] shadow-xs">
+                <span className="absolute top-3 left-3 px-3 py-1 rounded-full text-[9px] font-mono uppercase tracking-wider bg-alabaster/90 backdrop-blur-md text-obsidian border border-[#D5CFBE] shadow-xs">
                   {product.tag}
                 </span>
               </div>
-              {product.hoverImage && (
-                <div className="aspect-video rounded-xl overflow-hidden bg-[#ECE8DF] border border-[#E0DBCF] shadow-xs">
-                  <img
-                    src={product.hoverImage}
-                    alt={`${product.name} vue détail`}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              )}
-            </div>
 
-            {/* Product Information */}
-            <div className="flex flex-col justify-between h-full pt-2">
-              <div>
-                <div className="chrome-badge inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-[0.2em] text-[#5A554E] mb-3">
+              {/* Informations pièce */}
+              <div className="space-y-3">
+                <div className="chrome-badge inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[9px] font-mono uppercase tracking-[0.2em] text-[#5A554E]">
                   <Sparkles className="w-3 h-3 text-taupe" />
                   <span>{product.category}</span>
                 </div>
 
-                <h2 className="font-serif-luxury text-3xl sm:text-4xl font-normal text-obsidian tracking-normal leading-tight">
+                <h2 className="font-serif-luxury text-2xl sm:text-3xl font-normal text-obsidian tracking-normal leading-snug">
                   {product.name}
                 </h2>
 
-                <div className="mt-3 flex items-baseline gap-3">
-                  <span className="font-serif-luxury text-3xl font-medium text-obsidian">
+                <div className="flex items-baseline gap-2.5">
+                  <span className="font-serif-luxury text-2xl font-medium text-obsidian">
                     {product.price} €
                   </span>
-                  <span className="text-xs text-taupe font-mono">
-                    TVA incluse • Livraison atelier offerte
+                  <span className="text-[11px] text-taupe font-mono">
+                    TVA incluse • Port offert
                   </span>
                 </div>
 
-                <p className="text-xs sm:text-[13px] text-[#6B655C] font-sans-clean font-light mt-4 leading-relaxed">
+                <p className="text-xs text-[#6B655C] font-sans-clean font-light leading-relaxed">
                   {product.description}
                 </p>
 
-                {/* Key specs breakdown */}
-                <div className="mt-6 p-4.5 rounded-2xl bg-white border border-[#E8E4DA] space-y-2.5 text-xs shadow-xs">
+                {/* Spécifications atelier compactes */}
+                <div className="p-3.5 rounded-xl bg-white border border-[#E8E4DA] space-y-2 text-xs shadow-xs">
                   <div className="flex justify-between">
-                    <span className="text-taupe font-mono">Étoffe principale :</span>
-                    <span className="text-obsidian font-medium">{product.specs.material}</span>
+                    <span className="text-taupe font-mono text-[11px]">Étoffe :</span>
+                    <span className="text-obsidian font-medium text-[11px]">{product.specs.material}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-taupe font-mono">Poids du drap :</span>
-                    <span className="text-obsidian font-medium">{product.specs.weight}</span>
+                    <span className="text-taupe font-mono text-[11px]">Poids drap :</span>
+                    <span className="text-obsidian font-medium text-[11px]">{product.specs.weight}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-taupe font-mono">Ligne de coupe :</span>
-                    <span className="text-obsidian font-medium">{product.specs.fit}</span>
+                    <span className="text-taupe font-mono text-[11px]">Coupe :</span>
+                    <span className="text-obsidian font-medium text-[11px]">{product.specs.fit}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-taupe font-mono">Origine atelier :</span>
-                    <span className="text-obsidian font-medium">{product.specs.origin}</span>
+                    <span className="text-taupe font-mono text-[11px]">Origine :</span>
+                    <span className="text-obsidian font-medium text-[11px]">{product.specs.origin}</span>
                   </div>
                 </div>
 
-                {/* Garment Details List */}
-                <div className="mt-6">
-                  <h4 className="text-xs uppercase tracking-wider font-mono text-taupe mb-2.5">
-                    Détails Sartoriaux & Finitions :
+                {/* Détails sartoriaux */}
+                <div>
+                  <h4 className="text-[11px] uppercase tracking-wider font-mono text-taupe mb-2">
+                    Finitions d'atelier :
                   </h4>
-                  <ul className="space-y-1.5 text-xs text-[#6B655C]">
+                  <ul className="space-y-1 text-xs text-[#6B655C]">
                     {product.details.map((detail, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5">
+                      <li key={idx} className="flex items-start gap-2">
                         <span className="text-obsidian font-bold mt-0.5">•</span>
                         <span>{detail}</span>
                       </li>
@@ -149,63 +150,63 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                   </ul>
                 </div>
               </div>
+            </div>
 
-              {/* Bottom Actions */}
-              <div className="mt-8 pt-6 border-t border-[#EAE5D9]">
-                <div className="mb-4">
-                  <div className="flex justify-between items-center text-xs uppercase font-mono mb-2">
-                    <span className="text-taupe">Sélectionner la taille :</span>
-                    <span className="text-obsidian font-bold">{currentSize}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    {product.sizes.map((size) => (
-                      <button
-                        key={size}
-                        type="button"
-                        onClick={() => setSelectedSize(size)}
-                        className={`min-w-11 h-10 px-3 rounded-xl text-xs font-mono font-medium transition-all cursor-pointer ${
-                          currentSize === size
-                            ? 'bg-obsidian text-alabaster font-bold shadow-sm'
-                            : 'bg-white text-[#5A554E] hover:bg-[#EAE5D9] hover:text-obsidian border border-[#E2DDD2]'
-                        }`}
-                      >
-                        {size}
-                      </button>
-                    ))}
-                  </div>
+            {/* Footer d'action fixe et compact en bas du drawer */}
+            <div className="p-5 border-t border-[#EAE5D9] bg-white/95 backdrop-blur-xs sticky bottom-0 z-20 space-y-3">
+              <div>
+                <div className="flex justify-between items-center text-[11px] uppercase font-mono mb-2">
+                  <span className="text-taupe">Taille atelier :</span>
+                  <span className="text-obsidian font-bold">{currentSize}</span>
                 </div>
-
-                <button
-                  type="button"
-                  onClick={handleAdd}
-                  disabled={isAdded}
-                  className={`chrome-button-sheen w-full py-4 rounded-full text-xs font-sans-clean font-medium uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-md ${
-                    isAdded
-                      ? 'bg-[#2A4736] text-white'
-                      : 'bg-obsidian text-alabaster hover:bg-[#23211F]'
-                  }`}
-                >
-                  {isAdded ? (
-                    <>
-                      <Check className="w-4 h-4" />
-                      <span>Ajouté au Panier d'Atelier</span>
-                    </>
-                  ) : (
-                    <>
-                      <ShoppingBag className="w-4 h-4" />
-                      <span>Commander la Pièce • {product.price} €</span>
-                    </>
-                  )}
-                </button>
-
-                <div className="mt-3.5 flex items-center justify-center gap-2 text-[10px] text-taupe uppercase tracking-widest font-mono">
-                  <ShieldCheck className="w-3.5 h-3.5 text-[#2A4736]" />
-                  <span>Série Limitée Numérotée • Expédition Sous Housse Protectrice</span>
+                <div className="flex items-center gap-1.5 flex-wrap">
+                  {product.sizes.map((size) => (
+                    <button
+                      key={size}
+                      type="button"
+                      onClick={() => setSelectedSize(size)}
+                      className={`min-w-9 h-8 px-2.5 rounded-lg text-xs font-mono font-medium transition-all cursor-pointer ${
+                        currentSize === size
+                          ? 'bg-obsidian text-alabaster font-bold shadow-xs'
+                          : 'bg-white text-[#5A554E] hover:bg-[#EAE5D9] hover:text-obsidian border border-[#E2DDD2]'
+                      }`}
+                    >
+                      {size}
+                    </button>
+                  ))}
                 </div>
               </div>
+
+              <button
+                type="button"
+                onClick={handleAdd}
+                disabled={isAdded}
+                className={`chrome-button-sheen w-full py-3 rounded-full text-xs font-sans-clean font-medium uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-sm ${
+                  isAdded
+                    ? 'bg-[#2A4736] text-white'
+                    : 'bg-obsidian text-alabaster hover:bg-[#23211F]'
+                }`}
+              >
+                {isAdded ? (
+                  <>
+                    <Check className="w-4 h-4" />
+                    <span>Ajouté au Panier</span>
+                  </>
+                ) : (
+                  <>
+                    <ShoppingBag className="w-3.5 h-3.5" />
+                    <span>Commander la Pièce • {product.price} €</span>
+                  </>
+                )}
+              </button>
+
+              <div className="flex items-center justify-center gap-1.5 text-[9px] text-taupe uppercase tracking-widest font-mono">
+                <ShieldCheck className="w-3 h-3 text-[#2A4736]" />
+                <span>Série Limitée • Confection d'Atelier</span>
+              </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
     </AnimatePresence>
   );

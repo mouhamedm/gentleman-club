@@ -39,14 +39,14 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       style={style}
       className={`w-full max-w-7xl mx-auto rounded-3xl sm:rounded-[36px] border border-[#E5DFCE] bg-alabaster p-4 sm:p-6 md:p-7 ${
         isLast ? 'pb-6 sm:pb-8' : 'pb-4 sm:pb-6'
-      } flex flex-col justify-between shadow-[0_24px_55px_-12px_rgba(30,24,18,0.12)] transition-shadow duration-300 hover:shadow-[0_32px_70px_-15px_rgba(30,24,18,0.18)] select-none ${className}`}
+      } flex flex-col justify-between shadow-[0_24px_55px_-12px_rgba(30,24,18,0.12)] transition-shadow duration-300 hover:shadow-[0_32px_70px_-15px_rgba(30,24,18,0.18)] ${className}`}
     >
       {/* Top Row */}
       <div className="flex flex-wrap items-center justify-between gap-3 pb-3 sm:pb-4 border-b border-[#EAE5D9]">
         <div className="flex items-center gap-3 sm:gap-5 md:gap-7">
           {/* Number */}
           <span
-            className="font-serif-luxury font-light italic text-[#B8AF9E] leading-none select-none"
+            className="font-serif-luxury font-light italic text-[#B8AF9E] leading-none"
             style={{ fontSize: 'clamp(2.2rem, 4.5vw, 3.8rem)' }}
           >
             {project.number}
