@@ -89,7 +89,7 @@ export const MarqueeSection: React.FC = () => {
           {row1Images.map((src, index) => (
             <div
               key={`row1-${index}`}
-              className="relative w-85 sm:w-100 h-45 sm:h-50 shrink-0 rounded-2xl overflow-hidden bg-[#FAF8F5] border border-[#E4DEC3] shadow-[0_12px_32px_rgba(30,24,18,0.06)] group"
+              className="relative w-85 sm:w-100 h-57.5 sm:h-66.25 shrink-0 rounded-2xl overflow-hidden bg-[#FAF8F5] border border-[#E4DEC3] shadow-[0_12px_32px_rgba(30,24,18,0.06)] group"
             >
               <img
                 src={src}
@@ -118,7 +118,7 @@ export const MarqueeSection: React.FC = () => {
           {row2Images.map((src, index) => (
             <div
               key={`row2-${index}`}
-              className="relative w-85 sm:w-100 h-57.5 sm:h-50 shrink-0 rounded-2xl overflow-hidden bg-[#FAF8F5] border border-[#E4DEC3] shadow-[0_12px_32px_rgba(30,24,18,0.06)] group"
+              className="relative w-85 sm:w-100 h-57.5 sm:h-66.25 shrink-0 rounded-2xl overflow-hidden bg-[#FAF8F5] border border-[#E4DEC3] shadow-[0_12px_32px_rgba(30,24,18,0.06)] group"
             >
               <img
                 src={src}

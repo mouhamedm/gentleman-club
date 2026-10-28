@@ -1,6 +1,6 @@
-import React from 'react';
-import { ArrowUp, Sparkles } from 'lucide-react';
-import { ContactButton } from './ContactButton.tsx';
+import React from "react";
+import { ArrowUp, Sparkles } from "lucide-react";
+import { ContactButton } from "./ContactButton.tsx";
 
 interface FooterProps {
   onContactClick: () => void;
@@ -8,7 +8,7 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({ onContactClick }) => {
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -20,18 +20,20 @@ export const Footer: React.FC<FooterProps> = ({ onContactClick }) => {
               <Sparkles className="w-3.5 h-3.5 text-[#D5CFBE]" />
               Atelier Haute Confection • Séries Confidentielles • Zéro Réassort
             </div>
-            <h2
-              className="font-serif-luxury font-light text-alabaster tracking-tight leading-none text-4xl sm:text-6xl md:text-7xl"
-            >
+            <h2 className="font-serif-luxury font-light text-alabaster tracking-tight leading-none text-4xl sm:text-6xl md:text-7xl">
               Gentleman Club.
             </h2>
             <p className="font-sans-clean font-light text-xs sm:text-sm text-[#A69F92] mt-3 max-w-md leading-relaxed">
-              Pour ceux qui célèbrent le costume sur-mesure, la noblesse des étoffes et l'élégance froide du chrome poli.
+              Pour ceux qui célèbrent le costume sur-mesure, la noblesse des
+              étoffes et l'élégance froide du chrome poli.
             </p>
           </div>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-            <ContactButton onClick={onContactClick} label="Prendre Rendez-Vous" />
+            <ContactButton
+              onClick={onContactClick}
+              label="Prendre Rendez-Vous"
+            />
             <button
               type="button"
               onClick={scrollToTop}
@@ -53,12 +55,23 @@ export const Footer: React.FC<FooterProps> = ({ onContactClick }) => {
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-light text-taupe uppercase tracking-widest font-sans-clean">
-          <div>&copy; {new Date().getFullYear()} GENTLEMAN CLUB — ATELIER SARTORIAL. TOUS DROITS RÉSERVÉS.</div>
+          <div>
+            &copy; {new Date().getFullYear()} GENTLEMAN CLUB — ATELIER
+            SARTORIAL. TOUS DROITS RÉSERVÉS.
+          </div>
           <div className="flex items-center gap-6 text-[11px] tracking-[0.2em]">
-            <span className="hover:text-white transition-colors cursor-pointer">LOOKBOOK</span>
-            <span className="hover:text-white transition-colors cursor-pointer">SUR-MESURE</span>
-            <span className="hover:text-white transition-colors cursor-pointer">SAVOIR-FAIRE</span>
-            <span className="hover:text-white transition-colors cursor-pointer">CONTACT</span>
+            <span className="hover:text-white transition-colors cursor-pointer">
+              LOOKBOOK
+            </span>
+            <span className="hover:text-white transition-colors cursor-pointer">
+              SUR-MESURE
+            </span>
+            <span className="hover:text-white transition-colors cursor-pointer">
+              SAVOIR-FAIRE
+            </span>
+            <span className="hover:text-white transition-colors cursor-pointer">
+              CONTACT
+            </span>
           </div>
         </div>
       </div>

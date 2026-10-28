@@ -349,8 +349,8 @@ export function WorksWheel({
       </div>
 
       {/* Front active item title at bottom left (only the title text) */}
-      <div className="pointer-events-none absolute left-[6%] sm:left-[8%] bottom-[5%] sm:bottom-[4.5%] max-w-85 sm:max-w-115 z-20">
-        <h2 className="font-serif-luxury text-xl sm:text-2xl md:text-3xl font-medium tracking-tight text-obsidian leading-snug line-clamp-2">
+      <div className="pointer-events-none absolute left-[6%] sm:left-[8%] bottom-[5%] sm:bottom-[4.5%] max-w-[80vw] sm:max-w-xl z-20">
+        <h2 className="font-serif-luxury text-xl sm:text-2xl md:text-3xl font-medium tracking-tight text-obsidian leading-snug whitespace-normal sm:whitespace-nowrap">
           {items[active]?.title}
         </h2>
       </div>

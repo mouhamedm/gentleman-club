@@ -12,17 +12,17 @@ interface HeroSectionProps {
 
 const HERO_WHEEL_ITEMS: WorksWheelItem[] = [
   {
-    title: "Costume Laine Froide & Boutons Chrome",
+    title: "Costume Trois-Pièces Sartorial",
     image: "/images/hero-img/look-01.webp",
     href: "#shop",
   },
   {
-    title: "Veste Croisée Gréige & Revers Éperon",
+    title: "Costume Prince de Galles",
     image: "/images/hero-img/look-02.webp",
     href: "#shop",
   },
   {
-    title: "Smoking Soie Albâtre & Épingle d'Argent",
+    title: "Costume Croisé Gris Anthracite",
     image: "/images/hero-img/look-03.webp",
     href: "#shop",
   },
@@ -32,27 +32,27 @@ const HERO_WHEEL_ITEMS: WorksWheelItem[] = [
     href: "#shop",
   },
   {
-    title: "Ensemble Structuré Noir & Bijouterie Métal",
+    title: "Ensemble Sartorial Sur Mesure",
     image: "/images/hero-img/look-05.webp",
     href: "#shop",
   },
   {
-    title: "Redingote Moderne Minimaliste",
+    title: "Pardessus Laine Brun Tabac",
     image: "/images/hero-img/look-06.webp",
     href: "#shop",
   },
   {
-    title: "Pardessus Laine 140s Coupe Sartoriale",
+    title: "Blazer Croisé Brun Chocolat",
     image: "/images/hero-img/look-07.webp",
     href: "#shop",
   },
   {
-    title: "Costume Monochrome Sable Chaud",
+    title: "Costume Rayé Bleu Nuit",
     image: "/images/hero-img/look-08.webp",
     href: "#shop",
   },
   {
-    title: "Blazer Déstructuré Lin & Soie",
+    title: "Veste Sartoriale Vert Forêt",
     image: "/images/hero-img/look-09.webp",
     href: "#shop",
   },

@@ -1,63 +1,69 @@
 "use client";
 
-import { WorksWheel, type WorksWheelItem } from "@/components/ui/works-wheel";
-
-// Placeholder art served straight off the crafterui CDN so the demo works the
-// moment it is installed - no assets to copy into your public/. Swap the names
-// and the titles for your own index - the wheel sizes its ring to however many
-// pieces it is handed.
-const ART = (name: string) => `https://www.crafterui.com/art/${name}.jpg`;
-
-const WORKS: WorksWheelItem[] = [
+import { HaloReel, type HaloReelItem } from "./halo-reel.tsx";
+ 
+const CDN = "https://pub-940ccf6255b54fa799a9b01050e6c227.r2.dev";
+ 
+const CARDS: HaloReelItem[] = [
   {
-    title: "Prismatic Rift",
-    image: ART("prismatic-rift-anime"),
-    href: "#prismatic-rift",
+    src: `${CDN}/stock-images/767d99bb371a54d0d36751e8cecae43c.jpg`,
+    alt: "Diver silhouetted inside a sunset seascape shaped like a profile",
   },
   {
-    title: "Ember Clouds",
-    image: ART("black-hole-ember-clouds"),
-    href: "#ember-clouds",
+    src: `${CDN}/gradients/hero_gradient/hero-gradients-01.png`,
+    alt: "Soft multi-tone gradient wash",
   },
   {
-    title: "Neon Portal",
-    image: ART("neon-cave-portal-silhouette"),
-    href: "#neon-portal",
+    src: `${CDN}/stock-images/821d815affa6496c39cbdeeec7a84603.jpg`,
+    alt: "Double-exposure portrait blended with a city skyline at dusk",
   },
   {
-    title: "Red Ribbon",
-    image: ART("red-ribbon-typography"),
-    href: "#red-ribbon",
+    src: `${CDN}/gradients/moon/moon-grade-03.png`,
+    alt: "Moon-toned gradient",
   },
   {
-    title: "Celestial",
-    image: ART("celestial-light-figure"),
-    href: "#celestial",
-  },
-  { title: "Uplight", image: ART("neon-portrait-uplight"), href: "#uplight" },
-  {
-    title: "Indigo Marble",
-    image: ART("indigo-liquid-marble"),
-    href: "#indigo-marble",
+    src: `${CDN}/stock-images/937438c560ada1c83317f2c11b3454b0.jpg`,
+    alt: "Motion-blurred side-profile portrait against a deep orange backdrop",
   },
   {
-    title: "Launch Window",
-    image: ART("rocket-launch-gradient"),
-    href: "#launch-window",
+    src: `${CDN}/gradients/shade_shiters/shade-shifters-05.png`,
+    alt: "Shifting shade gradient",
   },
   {
-    title: "Cosmic Wave",
-    image: ART("astronaut-cosmic-wave"),
-    href: "#cosmic-wave",
+    src: `${CDN}/stock-images/98f89cb9994f5c382ab964062c4039db.jpg`,
+    alt: "Figure holding a racket that dissolves into a swirling colourful cloud",
+  },
+  {
+    src: `${CDN}/gradients/shade_shiters/shade-shifters-09.png`,
+    alt: "Shifting shade gradient",
+  },
+  {
+    src: `${CDN}/stock-images/ddcbee38be8b7274e19e132d7ab35b53.jpg`,
+    alt: "Hand gesture with a colourful cutout of a bird flying through the fingers",
+  },
+  {
+    src: `${CDN}/gradients/moon/moon-grade-06.png`,
+    alt: "Moon-toned gradient",
   },
 ];
 
-export function WorksWheelDemo() {
+export default function DemoOne() {
   return (
-    <div className="bg-background text-foreground w-full h-screen">
-      <WorksWheel items={WORKS} label="Works '26" action="View" />
-    </div>
+    <HaloReel
+      items={CARDS}
+      aria-label="Recent work"
+      centerLabel={
+        <span className="text-[3.4vw] font-medium tracking-tight text-foreground font-serif-luxury">
+          Selected works
+        </span>
+      }
+      cardWidth={130}
+      cardHeight={180}
+      minScale={0.4}
+      radiusYRatio={0.36}
+      holdDuration={1000}
+      stepDuration={700}
+      className="h-140 bg-muted/40"
+    />
   );
 }
-
-export default WorksWheelDemo;
