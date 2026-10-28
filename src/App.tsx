@@ -7,8 +7,8 @@ import React, { useState } from 'react';
 import { HeroSection } from './components/HeroSection.tsx';
 import { MarqueeSection } from './components/MarqueeSection.tsx';
 import { ShopSection, ProductItem } from './components/ShopSection.tsx';
-import { AboutSection } from './components/AboutSection.tsx';
 import { ServicesSection } from './components/ServicesSection.tsx';
+import { TestimonialsSection } from './components/TestimonialsSection.tsx';
 import { ProjectsSection } from './components/ProjectsSection.tsx';
 import { Footer } from './components/Footer.tsx';
 import { ContactModal } from './components/ContactModal.tsx';
@@ -32,13 +32,14 @@ function MainStoreContent() {
 
   return (
     <div
-      className="min-h-screen bg-[#F7F5F0] text-[#1A1918] font-sans-clean selection:bg-obsidian-soft selection:text-alabaster"
+      className="min-h-screen bg-background text-[#1A1918] font-sans-clean selection:bg-obsidian-soft selection:text-alabaster"
       style={{ overflowX: 'clip' }}
     >
       {/* 1. HERO DROP SECTION */}
       <HeroSection
         onContactClick={() => setIsContactOpen(true)}
         onNavigate={handleNavigate}
+        onQuickView={(product) => setSelectedProduct(product)}
       />
 
       {/* 2. DYNAMIC MARQUEE & RUNWAY TICKER */}
@@ -49,11 +50,11 @@ function MainStoreContent() {
         onQuickView={(product) => setSelectedProduct(product)}
       />
 
-      {/* 4. THE ATELIER / BRAND MANIFEST */}
-      <AboutSection onContactClick={() => setIsContactOpen(true)} />
-
-      {/* 5. CRAFT & ENGINEERING STANDARDS */}
+      {/* 4. CRAFT & ENGINEERING STANDARDS (LE SAVOIR-FAIRE STICKY 01) */}
       <ServicesSection />
+
+      {/* 5. LE CERCLE PRIVÉ (STAGGER CARDS AVEC GLISSEMENT 2 DOIGTS) */}
+      <TestimonialsSection />
 
       {/* 6. CAPSULE COLLECTIONS (STACKING CARDS) */}
       <ProjectsSection

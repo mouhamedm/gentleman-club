@@ -18,6 +18,7 @@ export interface WorksWheelProps extends Omit<
   label?: string;
   action?: string;
   onActiveChange?: (index: number) => void;
+  onCardClick?: (index: number) => void;
 }
 
 /* Sensitivity and damping for luxury feel */
@@ -40,6 +41,7 @@ export function WorksWheel({
   action = "Explorer",
   className,
   onActiveChange,
+  onCardClick,
   ...props
 }: WorksWheelProps) {
   const stageRef = React.useRef<HTMLDivElement>(null);
@@ -53,6 +55,10 @@ export function WorksWheel({
   const turn = React.useRef(initialIndex);
   const target = React.useRef(initialIndex);
   const [active, setActive] = React.useState(initialIndex);
+  const lastActiveRef = React.useRef(initialIndex);
+  const onActiveChangeRef = React.useRef(onActiveChange);
+  onActiveChangeRef.current = onActiveChange;
+
   const [stage, setStage] = React.useState<Stage>({ w: 1200, h: 700 });
 
   const [reduced, setReduced] = React.useState(false);
@@ -73,6 +79,10 @@ export function WorksWheel({
     ro.observe(el);
     return () => ro.disconnect();
   }, []);
+
+  React.useEffect(() => {
+    onActiveChangeRef.current?.(initialIndex);
+  }, [initialIndex]);
 
   // Geometry: Grand landscape cards with generous padding, displaying only 3 images on screen (center + two up top)
   const metrics = React.useMemo(() => {
@@ -171,18 +181,16 @@ export function WorksWheel({
       }
 
       const nearest = clamp(Math.round(currentPos), 0, last);
-      setActive((prev) => {
-        if (prev !== nearest) {
-          if (onActiveChange) onActiveChange(nearest);
-          return nearest;
-        }
-        return prev;
-      });
+      if (lastActiveRef.current !== nearest) {
+        lastActiveRef.current = nearest;
+        setActive(nearest);
+        onActiveChangeRef.current?.(nearest);
+      }
     };
 
     frame = requestAnimationFrame(draw);
     return () => cancelAnimationFrame(frame);
-  }, [metrics, stage.h, count, last, reduced, onActiveChange]);
+  }, [metrics, stage.h, count, last, reduced]);
 
   // Wheel listener: Natural vertical scroll passes through to page; horizontal wheel scrolls carousel!
   const settling = React.useRef<number>(0);
@@ -317,6 +325,8 @@ export function WorksWheel({
                   if (Math.round(target.current) !== i) {
                     e.preventDefault();
                     to(i);
+                  } else {
+                    onCardClick?.(i);
                   }
                 }}
                 className="group absolute backface-hidden cursor-pointer will-change-transform"
