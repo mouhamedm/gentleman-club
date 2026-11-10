@@ -37,7 +37,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   return (
     <motion.div
       style={style}
-      className={`w-full max-w-7xl mx-auto rounded-3xl sm:rounded-[36px] border border-[#E5DFCE] bg-alabaster p-4 sm:p-6 md:p-7 ${
+      className={`w-full max-w-7xl mx-auto rounded-3xl sm:rounded-[36px] border border-border bg-alabaster p-4 sm:p-6 md:p-7 ${
         isLast ? 'pb-6 sm:pb-8' : 'pb-4 sm:pb-6'
       } flex flex-col justify-between shadow-[0_24px_55px_-12px_rgba(30,24,18,0.12)] transition-shadow duration-300 hover:shadow-[0_32px_70px_-15px_rgba(30,24,18,0.18)] ${className}`}
     >
@@ -72,7 +72,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         {/* Left Column (40% width) */}
         <div className="md:col-span-4 flex flex-col gap-3 sm:gap-4 md:h-full">
           <div
-            className="overflow-hidden rounded-xl sm:rounded-2xl bg-[#ECE8DF] border border-[#E0DBCF] cursor-pointer group h-30 sm:h-35 md:h-auto md:flex-4"
+            className="overflow-hidden rounded-xl sm:rounded-2xl bg-[#ECE8DF] border border-[#E0DBCF] cursor-pointer group h-24 min-[400px]:h-30 sm:h-35 md:h-auto md:flex-4"
             onClick={() => onSelectProject(project)}
           >
             <img
@@ -83,7 +83,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             />
           </div>
           <div
-            className="overflow-hidden rounded-xl sm:rounded-2xl bg-[#ECE8DF] border border-[#E0DBCF] cursor-pointer group h-35 sm:h-42.5 md:h-auto md:flex-5"
+            className="overflow-hidden rounded-xl sm:rounded-2xl bg-[#ECE8DF] border border-[#E0DBCF] cursor-pointer group h-28 min-[400px]:h-35 sm:h-42.5 md:h-auto md:flex-5"
             onClick={() => onSelectProject(project)}
           >
             <img
@@ -98,7 +98,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         {/* Right Column (60% width) */}
         <div className="md:col-span-6 flex md:h-full">
           <div
-            className="w-full h-60 sm:h-70 md:h-full overflow-hidden rounded-xl sm:rounded-2xl bg-[#ECE8DF] border border-[#E0DBCF] cursor-pointer group"
+            className="w-full h-48 min-[400px]:h-60 sm:h-70 md:h-full overflow-hidden rounded-xl sm:rounded-2xl bg-[#ECE8DF] border border-[#E0DBCF] cursor-pointer group"
             onClick={() => onSelectProject(project)}
           >
             <img

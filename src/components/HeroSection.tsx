@@ -308,10 +308,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         initial={{ opacity: 0, y: -14 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="w-full grid grid-cols-3 items-center px-6 sm:px-10 lg:px-14 pt-6 md:pt-8 z-30 pointer-events-auto"
+        className="w-full flex justify-between md:grid md:grid-cols-3 items-center px-5 sm:px-10 lg:px-14 pt-5 md:pt-8 z-30 pointer-events-auto"
       >
         {/* Left Nav items (2 items) */}
-        <div className="flex items-center gap-6 sm:gap-8 justify-start">
+        <div className="hidden md:flex items-center gap-6 sm:gap-8 justify-start">
           <button
             type="button"
             onClick={() => onNavigate("shop")}
@@ -335,7 +335,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="group cursor-pointer inline-flex flex-col items-center border-0 bg-transparent"
           >
-            <span className="font-serif-luxury text-xl sm:text-2xl md:text-3xl font-semibold tracking-[0.2em] text-obsidian group-hover:opacity-80 transition-opacity whitespace-nowrap">
+            <span className="font-serif-luxury text-lg min-[400px]:text-xl sm:text-2xl md:text-3xl font-semibold tracking-[0.12em] sm:tracking-[0.2em] text-obsidian group-hover:opacity-80 transition-opacity whitespace-nowrap">
               GENTLEMAN CLUB
             </span>
             <span className="text-[9px] font-sans-clean uppercase tracking-[0.32em] text-taupe -mt-0.5">
@@ -349,14 +349,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           <button
             type="button"
             onClick={() => onNavigate("services")}
-            className="hidden sm:inline-block text-[#1A1918] font-sans-clean font-medium uppercase tracking-[0.18em] text-[12px] sm:text-[13px] transition-opacity duration-200 hover:opacity-60 cursor-pointer bg-transparent border-0 p-0"
+            className="hidden md:inline-block text-[#1A1918] font-sans-clean font-medium uppercase tracking-[0.18em] text-[12px] sm:text-[13px] transition-opacity duration-200 hover:opacity-60 cursor-pointer bg-transparent border-0 p-0"
           >
             Savoir-Faire
           </button>
           <button
             type="button"
             onClick={onContactClick}
-            className="hidden sm:inline-block text-[#1A1918] font-sans-clean font-medium uppercase tracking-[0.18em] text-[12px] sm:text-[13px] transition-opacity duration-200 hover:opacity-60 cursor-pointer bg-transparent border-0 p-0"
+            className="hidden md:inline-block text-[#1A1918] font-sans-clean font-medium uppercase tracking-[0.18em] text-[12px] sm:text-[13px] transition-opacity duration-200 hover:opacity-60 cursor-pointer bg-transparent border-0 p-0"
           >
             Contact
           </button>
@@ -377,8 +377,27 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         </div>
       </motion.nav>
 
+      {/* Mobile / tablet quick links (hidden on desktop) */}
+      <div className="md:hidden relative z-30 flex items-center justify-center gap-5 sm:gap-8 px-5 pt-3 pointer-events-auto">
+        {[
+          { label: "Vestiaire", action: () => onNavigate("shop") },
+          { label: "Capsules", action: () => onNavigate("projects") },
+          { label: "Savoir-Faire", action: () => onNavigate("services") },
+          { label: "Contact", action: onContactClick },
+        ].map((l) => (
+          <button
+            key={l.label}
+            type="button"
+            onClick={l.action}
+            className="text-[#1A1918] font-sans-clean font-medium uppercase tracking-[0.14em] text-[10px] sm:text-[12px] bg-transparent border-0 p-0 cursor-pointer"
+          >
+            {l.label}
+          </button>
+        ))}
+      </div>
+
       {/* 2. Central 3D Interactive WorksWheel (Vertical Drum Mode) */}
-      <div className="absolute inset-0 z-10 flex items-center justify-center pt-14 pb-14">
+      <div className="absolute inset-0 z-10 flex items-center justify-center pt-24 pb-28 md:pt-14 md:pb-14">
         <WorksWheel
           items={HERO_WHEEL_ITEMS}
           label="GENTLEMAN CLUB"
@@ -393,7 +412,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       </div>
 
       {/* 3. Bottom Editorial Bar */}
-      <div className="w-full flex justify-between items-end pb-6 sm:pb-8 px-6 sm:px-10 lg:px-14 z-20 pointer-events-auto">
+      <div className="w-full flex justify-center md:justify-between items-end pb-6 sm:pb-8 px-6 sm:px-10 lg:px-14 z-20 pointer-events-auto">
         {/* Left spacing for WorksWheel title and chevrons */}
         <div className="w-32 hidden md:block" />
 
@@ -402,7 +421,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           type="button"
           onClick={() => onNavigate("shop")}
           whileHover={{ y: 2 }}
-          className="flex flex-col items-center gap-1.5 text-taupe hover:text-obsidian transition-colors cursor-pointer group mx-auto md:mx-0"
+          className="hidden md:flex flex-col items-center gap-1.5 text-taupe hover:text-obsidian transition-colors cursor-pointer group mx-auto md:mx-0"
         >
           <span className="text-[10px] font-mono uppercase tracking-[0.25em]">
             Découvrir le Vestiaire

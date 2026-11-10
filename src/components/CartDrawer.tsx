@@ -108,7 +108,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ onCheckoutSuccess }) => 
               </div>
 
               {/* Free shipping bar */}
-              <div className="px-6 py-3.5 bg-[#F2EFE8] border-b border-[#EAE5D9] text-xs">
+              <div className="px-6 py-3.5 bg-muted border-b border-[#EAE5D9] text-xs">
                 {subtotal >= freeShippingThreshold ? (
                   <p className="text-[#2A4736] font-medium flex items-center gap-2">
                     <Check className="w-4 h-4" /> Vous bénéficiez de la livraison d'atelier offerte.
@@ -118,7 +118,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ onCheckoutSuccess }) => 
                     Plus que <span className="font-semibold text-obsidian">{remainingForFreeShipping} €</span> pour la <span className="font-semibold text-obsidian">Livraison Express Offerte</span>
                   </p>
                 )}
-                <div className="w-full bg-[#E5DFCE] rounded-full h-1 mt-2 overflow-hidden">
+                <div className="w-full bg-border rounded-full h-1 mt-2 overflow-hidden">
                   <div
                     className="h-full bg-obsidian transition-all duration-500 rounded-full"
                     style={{ width: `${progressPercent}%` }}
@@ -157,7 +157,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ onCheckoutSuccess }) => 
                       <div className="h-full flex flex-col items-center justify-center text-center text-taupe py-16">
                         <ShoppingBag className="w-12 h-12 stroke-1 mb-3 opacity-40 text-obsidian" />
                         <p className="font-serif-luxury text-xl text-obsidian">Votre vestiaire est vide</p>
-                        <p className="text-xs mt-1 max-w-xs text-[#7A746B]">Explorez les créations de la collection Hiver 2026 et sélectionnez votre taille.</p>
+                        <p className="text-xs mt-1 max-w-xs text-muted-foreground">Explorez les créations de la collection Hiver 2026 et sélectionnez votre taille.</p>
                       </div>
                     ) : (
                       cartItems.map((item) => (

@@ -87,6 +87,18 @@ export function WorksWheel({
   // Geometry: Grand landscape cards with generous padding, displaying only 3 images on screen (center + two up top)
   const metrics = React.useMemo(() => {
     const { w, h } = stage;
+    // Mobile / small tablet: cards must fit the viewport (desktop untouched)
+    if (w < 768) {
+      const cardW = clamp(w * 0.72, 220, 420);
+      const cardH = Math.min(cardW * 1.1, h * 0.46);
+      return {
+        cardW,
+        cardH,
+        spreadX: cardW * 1.08,
+        spreadY: clamp(h * 0.1, 40, 80),
+        centerY: 10,
+      };
+    }
     // Grand landscape card dimensions enlarged
     const cardW = clamp(w * 0.45, 420, 640);
     const cardH = cardW / 1.52; // Cinema landscape ratio
@@ -129,6 +141,7 @@ export function WorksWheel({
     if (!stage.h) return;
     let frame = 0;
     const { cardW, cardH, spreadX, spreadY, centerY } = metrics;
+    const compact = stage.w < 768;
 
     const draw = () => {
       frame = requestAnimationFrame(draw);
@@ -173,6 +186,15 @@ export function WorksWheel({
 
         // Smooth fade so only the 3 main cards are visible at rest
         const opacity = clamp(1 - (absD - 1.05) * 1.6, 0.01, 1);
+
+        if (compact) {
+          // Mobile: one clean flat card, neighbours fade out (no tilt/squeeze)
+          card.style.transform = `translate3d(${x}px, 0px, 0px) scale(${clamp(1 - absD * 0.1, 0.85, 1)})`;
+          card.style.opacity = String(clamp(1 - absD * 1.8, 0.01, 1));
+          card.style.zIndex = String(Math.round(100 - absD * 15));
+          card.style.pointerEvents = absD < 0.5 ? "auto" : "none";
+          continue;
+        }
 
         card.style.transform = `translate3d(${x}px, ${y}px, ${z}px) rotateZ(${tiltZ}deg) rotateY(${yawY}deg) scale(${scale})`;
         card.style.opacity = String(opacity);
@@ -359,7 +381,7 @@ export function WorksWheel({
       </div>
 
       {/* Front active item title at bottom left (only the title text) */}
-      <div className="pointer-events-none absolute left-[6%] sm:left-[8%] bottom-[5%] sm:bottom-[4.5%] max-w-[80vw] sm:max-w-xl z-20">
+      <div className="pointer-events-none absolute inset-x-0 text-center md:text-left md:inset-x-auto left-0 md:left-[8%] bottom-0 md:bottom-[4.5%] px-14 md:px-0 max-w-full md:max-w-xl z-20">
         <h2 className="font-serif-luxury text-xl sm:text-2xl md:text-3xl font-medium tracking-tight text-obsidian leading-snug whitespace-normal sm:whitespace-nowrap">
           {items[active]?.title}
         </h2>

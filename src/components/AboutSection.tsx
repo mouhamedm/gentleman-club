@@ -45,7 +45,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onContactClick }) =>
           <p className="font-serif-luxury text-xl sm:text-2xl md:text-3xl text-[#3A3835] font-light leading-relaxed italic">
             « À la croisée de l'architecture du costume et de la bijouterie contemporaine. Nous façonnons des pièces rares pour ceux qui exigent l'excellence absolue. »
           </p>
-          <p className="font-sans-clean text-xs sm:text-sm text-[#7A746B] font-light mt-4 leading-relaxed max-w-xl mx-auto">
+          <p className="font-sans-clean text-xs sm:text-sm text-muted-foreground font-light mt-4 leading-relaxed max-w-xl mx-auto">
             Chaque silhouette est montée avec des boutonnières milanaises faites main, des doublures soyeuses et des garnitures métalliques chromées qui captent la lumière avec une précision chirurgicale.
           </p>
         </FadeIn>
@@ -53,7 +53,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onContactClick }) =>
         {/* 3 Pillars of Excellence Cards */}
         <FadeIn delay={0.4} y={30} className="w-full mt-14 sm:mt-16">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-            <div className="p-7 rounded-2xl bg-white/70 border border-[#E5DFCE] shadow-[0_8px_25px_-5px_rgba(30,24,18,0.04)] backdrop-blur-sm">
+            <div className="p-7 rounded-2xl bg-white/70 border border-border shadow-[0_8px_25px_-5px_rgba(30,24,18,0.04)] backdrop-blur-sm">
               <div className="w-10 h-10 rounded-full border border-[#D5CFBE] bg-alabaster flex items-center justify-center text-obsidian mb-4">
                 <Scissors className="w-4 h-4 text-taupe" />
               </div>
@@ -65,7 +65,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onContactClick }) =>
               </p>
             </div>
 
-            <div className="p-7 rounded-2xl bg-white/70 border border-[#E5DFCE] shadow-[0_8px_25px_-5px_rgba(30,24,18,0.04)] backdrop-blur-sm">
+            <div className="p-7 rounded-2xl bg-white/70 border border-border shadow-[0_8px_25px_-5px_rgba(30,24,18,0.04)] backdrop-blur-sm">
               <div className="w-10 h-10 rounded-full border border-[#D5CFBE] bg-alabaster flex items-center justify-center text-obsidian mb-4">
                 <Gem className="w-4 h-4 text-taupe" />
               </div>
@@ -77,7 +77,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onContactClick }) =>
               </p>
             </div>
 
-            <div className="p-7 rounded-2xl bg-white/70 border border-[#E5DFCE] shadow-[0_8px_25px_-5px_rgba(30,24,18,0.04)] backdrop-blur-sm">
+            <div className="p-7 rounded-2xl bg-white/70 border border-border shadow-[0_8px_25px_-5px_rgba(30,24,18,0.04)] backdrop-blur-sm">
               <div className="w-10 h-10 rounded-full border border-[#D5CFBE] bg-alabaster flex items-center justify-center text-obsidian mb-4">
                 <Award className="w-4 h-4 text-taupe" />
               </div>

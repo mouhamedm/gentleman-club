@@ -204,7 +204,7 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({
         {testimonial.id && (
           <span className={cn(
             "font-mono text-xs uppercase tracking-widest px-2.5 py-1 rounded-full border",
-            isCenter ? "border-white/20 text-[#D5CFBE] bg-white/10" : "border-[#D5CFBE] text-[#8C867C]"
+            isCenter ? "border-white/20 text-[#D5CFBE] bg-white/10" : "border-[#D5CFBE] text-taupe"
           )}>
             Standard {testimonial.id}
           </span>
@@ -229,7 +229,7 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({
 
       <p className={cn(
         "absolute bottom-6 left-6 right-6 text-xs font-mono uppercase tracking-wider truncate",
-        isCenter ? "text-[#D5CFBE]" : "text-[#7A746B]"
+        isCenter ? "text-[#D5CFBE]" : "text-muted-foreground"
       )}>
         — {testimonial.by}
       </p>
