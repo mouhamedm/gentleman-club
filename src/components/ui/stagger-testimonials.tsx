@@ -228,7 +228,7 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({
       </h3>
 
       <p className={cn(
-        "absolute bottom-6 left-6 right-6 text-xs font-mono uppercase tracking-wider truncate",
+        "absolute bottom-6 left-6 right-6 text-xs font-mono uppercase tracking-wider truncate max-sm:whitespace-normal max-sm:line-clamp-2",
         isCenter ? "text-[#D5CFBE]" : "text-muted-foreground"
       )}>
         — {testimonial.by}

@@ -40,13 +40,13 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="absolute top-6 right-6 text-taupe hover:text-obsidian transition-colors p-2.5 rounded-full bg-white/70 border border-[#E2DDD2] hover:bg-white cursor-pointer z-20 shadow-xs"
+            className="absolute top-4 right-4 sm:top-6 sm:right-6 text-taupe hover:text-obsidian transition-colors p-2.5 rounded-full bg-white/70 border border-[#E2DDD2] hover:bg-white cursor-pointer z-20 shadow-xs"
           >
             <X className="w-5 h-5" />
           </button>
 
           {/* Header */}
-          <div className="flex flex-wrap items-end justify-between gap-4 pb-6 border-b border-[#EAE5D9]">
+          <div className="flex flex-wrap items-end justify-between gap-4 pb-6 pt-8 sm:pt-0 border-b border-[#EAE5D9]">
             <div>
               <div className="flex items-center gap-3 mb-2">
                 <span className="chrome-badge font-mono text-xs uppercase px-3.5 py-1 rounded-full text-[#5A554E]">

@@ -128,7 +128,7 @@ export const ServicesSection: React.FC = () => {
         {/* En-tête de section */}
         <FadeIn delay={0} y={30}>
           <div className="text-center mb-16 sm:mb-20 md:mb-24">
-            <div className="chrome-badge inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full text-[11px] font-mono uppercase tracking-[0.22em] text-[#D5CFBE] bg-white/5 border border-white/10 mb-4">
+            <div className="chrome-badge-dark inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full text-[11px] font-mono uppercase tracking-[0.22em] text-[#D5CFBE] mb-4">
               <Sparkles className="w-3.5 h-3.5 text-[#D5CFBE]" />
               <span>Savoir-Faire & Standards d'Excellence</span>
             </div>
@@ -144,32 +144,8 @@ export const ServicesSection: React.FC = () => {
           </div>
         </FadeIn>
 
-        {/* Mobile Sticky Indicator Bar */}
-        <div className="lg:hidden sticky top-16 z-30 bg-[#121110]/95 backdrop-blur-md py-3 px-4 border-y border-[#262420] mb-8 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <span className="font-serif-luxury text-3xl font-light text-white leading-none">
-              {activeItem.id}.
-            </span>
-            <span className="font-serif-luxury text-sm text-alabaster font-light truncate max-w-50">
-              {activeItem.name}
-            </span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            {SERVICES.map((item, idx) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToItem(idx)}
-                className={`h-1.5 transition-all duration-300 rounded-full cursor-pointer ${
-                  idx === activeIndex ? 'w-5 bg-white' : 'w-1.5 bg-white/20'
-                }`}
-                aria-label={`Étape ${item.id}`}
-              />
-            ))}
-          </div>
-        </div>
-
         {/* Contenu Split : Gauche Fixe (Sticky) / Droite Défilante */}
-        <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-16">
+        <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-16 mt-12 lg:mt-0">
           {/* COLONNE GAUCHE FIXE (STICKY) */}
           <div className="hidden lg:flex lg:w-5/12 shrink-0 sticky top-28 h-[calc(100vh-9rem)] flex-col justify-between py-6 pr-6">
             {/* Haut de colonne */}
@@ -257,7 +233,7 @@ export const ServicesSection: React.FC = () => {
           </div>
 
           {/* COLONNE DROITE DÉFILANTE */}
-          <div className="w-full lg:w-7/12 flex flex-col space-y-16 lg:space-y-24">
+          <div className="w-full lg:w-7/12 flex flex-col space-y-6 sm:space-y-8 lg:space-y-24">
             {SERVICES.map((service, index) => {
               const isActive = index === activeIndex;
 
@@ -267,7 +243,7 @@ export const ServicesSection: React.FC = () => {
                   ref={(el) => {
                     itemRefs.current[index] = el;
                   }}
-                  className="min-h-[70vh] sm:min-h-[80vh] flex flex-col justify-center py-8 sm:py-12"
+                  className="lg:min-h-[80vh] flex flex-col justify-center py-0 lg:py-12"
                 >
                   <div
                     className={`bg-[#1A1917] rounded-3xl sm:rounded-[36px] p-6 sm:p-10 border transition-all duration-500 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.5)] ${

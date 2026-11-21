@@ -293,7 +293,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   };
 
   return (
-    <section className="relative w-full h-screen min-h-160 flex flex-col justify-between overflow-hidden bg-background text-[#1A1918]">
+    <section className="relative w-full h-svh md:h-screen min-h-150 md:min-h-160 flex flex-col justify-between overflow-hidden bg-background text-[#1A1918]">
       {/* Subtle luxury ambient backlight */}
       <div
         className="absolute inset-0 pointer-events-none opacity-50"
@@ -304,25 +304,26 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       />
 
       {/* 1. Haute Couture Balanced Navbar (2 links - Center Brand - 2 links + Cart) */}
+      <div className="relative z-30 w-full">
       <motion.nav
         initial={{ opacity: 0, y: -14 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="w-full flex justify-between md:grid md:grid-cols-3 items-center px-5 sm:px-10 lg:px-14 pt-5 md:pt-8 z-30 pointer-events-auto"
+        className="w-full flex justify-between xl:grid xl:grid-cols-3 items-center px-5 sm:px-10 lg:px-14 pt-5 xl:pt-8 z-30 pointer-events-auto"
       >
         {/* Left Nav items (2 items) */}
-        <div className="hidden md:flex items-center gap-6 sm:gap-8 justify-start">
+        <div className="hidden xl:flex items-center gap-6 sm:gap-8 justify-start">
           <button
             type="button"
             onClick={() => onNavigate("shop")}
-            className="text-[#1A1918] font-sans-clean font-medium uppercase tracking-[0.18em] text-[12px] sm:text-[13px] transition-opacity duration-200 hover:opacity-60 cursor-pointer bg-transparent border-0 p-0"
+            className="text-[#1A1918] font-sans-clean font-medium uppercase tracking-[0.18em] text-[12px] sm:text-[13px] transition-opacity duration-200 hover:opacity-60 cursor-pointer bg-transparent border-0 p-0 whitespace-nowrap"
           >
             Vestiaire
           </button>
           <button
             type="button"
             onClick={() => onNavigate("projects")}
-            className="text-[#1A1918] font-sans-clean font-medium uppercase tracking-[0.18em] text-[12px] sm:text-[13px] transition-opacity duration-200 hover:opacity-60 cursor-pointer bg-transparent border-0 p-0"
+            className="text-[#1A1918] font-sans-clean font-medium uppercase tracking-[0.18em] text-[12px] sm:text-[13px] transition-opacity duration-200 hover:opacity-60 cursor-pointer bg-transparent border-0 p-0 whitespace-nowrap"
           >
             Capsules
           </button>
@@ -349,14 +350,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           <button
             type="button"
             onClick={() => onNavigate("services")}
-            className="hidden md:inline-block text-[#1A1918] font-sans-clean font-medium uppercase tracking-[0.18em] text-[12px] sm:text-[13px] transition-opacity duration-200 hover:opacity-60 cursor-pointer bg-transparent border-0 p-0"
+            className="hidden xl:inline-block text-[#1A1918] font-sans-clean font-medium uppercase tracking-[0.18em] text-[12px] sm:text-[13px] transition-opacity duration-200 hover:opacity-60 cursor-pointer bg-transparent border-0 p-0 whitespace-nowrap"
           >
             Savoir-Faire
           </button>
           <button
             type="button"
             onClick={onContactClick}
-            className="hidden md:inline-block text-[#1A1918] font-sans-clean font-medium uppercase tracking-[0.18em] text-[12px] sm:text-[13px] transition-opacity duration-200 hover:opacity-60 cursor-pointer bg-transparent border-0 p-0"
+            className="hidden xl:inline-block text-[#1A1918] font-sans-clean font-medium uppercase tracking-[0.18em] text-[12px] sm:text-[13px] transition-opacity duration-200 hover:opacity-60 cursor-pointer bg-transparent border-0 p-0 whitespace-nowrap"
           >
             Contact
           </button>
@@ -378,7 +379,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       </motion.nav>
 
       {/* Mobile / tablet quick links (hidden on desktop) */}
-      <div className="md:hidden relative z-30 flex items-center justify-center gap-5 sm:gap-8 px-5 pt-3 pointer-events-auto">
+      <div className="xl:hidden flex items-center justify-center gap-4 min-[400px]:gap-5 sm:gap-8 px-5 pt-4 pointer-events-auto">
         {[
           { label: "Vestiaire", action: () => onNavigate("shop") },
           { label: "Capsules", action: () => onNavigate("projects") },
@@ -389,15 +390,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             key={l.label}
             type="button"
             onClick={l.action}
-            className="text-[#1A1918] font-sans-clean font-medium uppercase tracking-[0.14em] text-[10px] sm:text-[12px] bg-transparent border-0 p-0 cursor-pointer"
+            className="text-[#1A1918] font-sans-clean font-medium uppercase tracking-[0.14em] text-[10px] sm:text-[12px] whitespace-nowrap bg-transparent border-0 p-0 cursor-pointer"
           >
             {l.label}
           </button>
         ))}
       </div>
+      </div>
 
       {/* 2. Central 3D Interactive WorksWheel (Vertical Drum Mode) */}
-      <div className="absolute inset-0 z-10 flex items-center justify-center pt-24 pb-28 md:pt-14 md:pb-14">
+      <div className="absolute inset-0 z-10 flex items-center justify-center pt-28 pb-24 lg:pb-14 xl:pt-14">
         <WorksWheel
           items={HERO_WHEEL_ITEMS}
           label="GENTLEMAN CLUB"
@@ -412,16 +414,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       </div>
 
       {/* 3. Bottom Editorial Bar */}
-      <div className="w-full flex justify-center md:justify-between items-end pb-6 sm:pb-8 px-6 sm:px-10 lg:px-14 z-20 pointer-events-auto">
+      <div className="w-full flex justify-center lg:justify-between items-end pb-6 sm:pb-8 px-6 sm:px-10 lg:px-14 z-20 pointer-events-auto">
         {/* Left spacing for WorksWheel title and chevrons */}
-        <div className="w-32 hidden md:block" />
+        <div className="w-32 hidden lg:block" />
 
         {/* Center Scroll Hint */}
         <motion.button
           type="button"
           onClick={() => onNavigate("shop")}
           whileHover={{ y: 2 }}
-          className="hidden md:flex flex-col items-center gap-1.5 text-taupe hover:text-obsidian transition-colors cursor-pointer group mx-auto md:mx-0"
+          className="hidden lg:flex flex-col items-center gap-1.5 text-taupe hover:text-obsidian transition-colors cursor-pointer group mx-auto lg:mx-0"
         >
           <span className="text-[10px] font-mono uppercase tracking-[0.25em]">
             Découvrir le Vestiaire

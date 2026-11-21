@@ -88,15 +88,16 @@ export function WorksWheel({
   const metrics = React.useMemo(() => {
     const { w, h } = stage;
     // Mobile / small tablet: cards must fit the viewport (desktop untouched)
-    if (w < 768) {
-      const cardW = clamp(w * 0.72, 220, 420);
-      const cardH = Math.min(cardW * 1.1, h * 0.46);
+    if (w < 1024) {
+      const cardW = clamp(w * 0.8, 230, 420);
+      // keep ~150px at the bottom for title + controls
+      const cardH = Math.max(180, Math.min(cardW * 1.4, h - 190));
       return {
         cardW,
         cardH,
         spreadX: cardW * 1.08,
         spreadY: clamp(h * 0.1, 40, 80),
-        centerY: 10,
+        centerY: -64,
       };
     }
     // Grand landscape card dimensions enlarged
@@ -141,7 +142,7 @@ export function WorksWheel({
     if (!stage.h) return;
     let frame = 0;
     const { cardW, cardH, spreadX, spreadY, centerY } = metrics;
-    const compact = stage.w < 768;
+    const compact = stage.w < 1024;
 
     const draw = () => {
       frame = requestAnimationFrame(draw);
@@ -293,7 +294,7 @@ export function WorksWheel({
         onClick={handlePrev}
         disabled={active === 0}
         title="Silhouette Précédente"
-        className="z-30 absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-[#D5CFBE] bg-alabaster/90 backdrop-blur-md text-obsidian hover:bg-obsidian hover:text-alabaster transition-all flex items-center justify-center cursor-pointer shadow-md hover:scale-105 active:scale-95 disabled:opacity-30 disabled:pointer-events-none"
+        className="z-30 absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-[#D5CFBE] bg-alabaster/90 backdrop-blur-md text-obsidian hover:bg-obsidian hover:text-alabaster transition-all hidden lg:flex items-center justify-center cursor-pointer shadow-md hover:scale-105 active:scale-95 disabled:opacity-30 disabled:pointer-events-none"
       >
         <ChevronLeft className="w-5 h-5" />
       </button>
@@ -304,7 +305,7 @@ export function WorksWheel({
         onClick={handleNext}
         disabled={active === last}
         title="Silhouette Suivante"
-        className="z-30 absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-[#D5CFBE] bg-alabaster/90 backdrop-blur-md text-obsidian hover:bg-obsidian hover:text-alabaster transition-all flex items-center justify-center cursor-pointer shadow-md hover:scale-105 active:scale-95 disabled:opacity-30 disabled:pointer-events-none"
+        className="z-30 absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-[#D5CFBE] bg-alabaster/90 backdrop-blur-md text-obsidian hover:bg-obsidian hover:text-alabaster transition-all hidden lg:flex items-center justify-center cursor-pointer shadow-md hover:scale-105 active:scale-95 disabled:opacity-30 disabled:pointer-events-none"
       >
         <ChevronRight className="w-5 h-5" />
       </button>
@@ -361,7 +362,7 @@ export function WorksWheel({
               >
                 <div
                   className={cn(
-                    "relative block size-full overflow-hidden rounded-2xl bg-[#FAF8F5] border border-[#D5CFBE] shadow-[0_20px_50px_-14px_rgba(25,22,18,0.18)]",
+                    "relative block size-full overflow-hidden rounded-2xl bg-card border border-[#D5CFBE] shadow-[0_20px_50px_-14px_rgba(25,22,18,0.18)]",
                   )}
                 >
                   {/* Fashion Artwork Image in Landscape Cinema format */}
@@ -380,11 +381,41 @@ export function WorksWheel({
         </div>
       </div>
 
-      {/* Front active item title at bottom left (only the title text) */}
-      <div className="pointer-events-none absolute inset-x-0 text-center md:text-left md:inset-x-auto left-0 md:left-[8%] bottom-0 md:bottom-[4.5%] px-14 md:px-0 max-w-full md:max-w-xl z-20">
-        <h2 className="font-serif-luxury text-xl sm:text-2xl md:text-3xl font-medium tracking-tight text-obsidian leading-snug whitespace-normal sm:whitespace-nowrap">
+      {/* Desktop: active item title at bottom left */}
+      <div className="pointer-events-none absolute hidden lg:block left-[8%] bottom-[4.5%] max-w-xl z-20">
+        <h2 className="font-serif-luxury text-3xl font-medium tracking-tight text-obsidian leading-snug whitespace-nowrap">
           {items[active]?.title}
         </h2>
+      </div>
+
+      {/* Mobile / tablet: title + controls under the card */}
+      <div className="lg:hidden absolute inset-x-0 bottom-0 z-20 flex flex-col items-center gap-3 px-6 text-center">
+        <h2 className="font-serif-luxury text-xl sm:text-2xl font-medium tracking-tight text-obsidian leading-snug min-h-11 flex items-center justify-center">
+          {items[active]?.title}
+        </h2>
+        <div className="flex items-center gap-5">
+          <button
+            type="button"
+            onClick={handlePrev}
+            disabled={active === 0}
+            aria-label="Silhouette précédente"
+            className="w-11 h-11 rounded-full border border-[#D5CFBE] bg-alabaster/90 text-obsidian flex items-center justify-center cursor-pointer shadow-sm active:scale-95 disabled:opacity-30"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <span className="font-mono text-[11px] tracking-[0.25em] text-taupe tabular-nums">
+            {String(active + 1).padStart(2, "0")} / {String(count).padStart(2, "0")}
+          </span>
+          <button
+            type="button"
+            onClick={handleNext}
+            disabled={active === last}
+            aria-label="Silhouette suivante"
+            className="w-11 h-11 rounded-full border border-[#D5CFBE] bg-alabaster/90 text-obsidian flex items-center justify-center cursor-pointer shadow-sm active:scale-95 disabled:opacity-30"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
       </div>
     </section>
   );

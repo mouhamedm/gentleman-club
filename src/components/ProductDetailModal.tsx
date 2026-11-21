@@ -49,7 +49,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
         />
 
         {/* Drawer compact qui glisse de la droite vers la gauche */}
-        <div className="fixed inset-y-0 right-0 max-w-full flex pl-6 sm:pl-10 pointer-events-none">
+        <div className="fixed inset-y-0 right-0 max-w-full flex pl-0 sm:pl-10 pointer-events-none">
           <motion.div
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
@@ -63,7 +63,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                 <span className="font-serif-luxury font-medium text-xl text-obsidian">
                   Fiche de Confection
                 </span>
-                <span className="px-2 py-0.5 rounded-full text-[9px] font-mono uppercase bg-[#EAE5D9] text-obsidian font-semibold tracking-wider">
+                <span className="hidden sm:inline-block px-2 py-0.5 rounded-full text-[9px] font-mono uppercase bg-[#EAE5D9] text-obsidian font-semibold tracking-wider">
                   {product.tag}
                 </span>
               </div>
@@ -80,7 +80,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             {/* Contenu compact avec défilement fluide */}
             <div className="flex-1 overflow-y-auto px-5 py-5 space-y-5">
               {/* Image unique bien proportionnée (pas deux) */}
-              <div className="relative w-full h-64 sm:h-72 rounded-2xl overflow-hidden bg-[#ECE8DF] border border-[#E0DBCF] shadow-xs">
+              <div className="relative w-full h-52 min-[400px]:h-60 sm:h-72 rounded-2xl overflow-hidden bg-[#ECE8DF] border border-[#E0DBCF] shadow-xs">
                 <img
                   src={product.image}
                   alt={product.name}

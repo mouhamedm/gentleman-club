@@ -1,5 +1,5 @@
-import React, { useState, useMemo } from "react";
-import { Sparkles, Filter, ShoppingBag } from "lucide-react";
+import React, { useState, useMemo, useEffect, useRef } from "react";
+import { Sparkles, Filter, ShoppingBag, ChevronLeft, ChevronRight } from "lucide-react";
 import { HaloReel, type HaloReelItem } from "./ui/halo-reel.tsx";
 
 export interface ProductItem {
@@ -224,6 +224,137 @@ interface ShopSectionProps {
   onQuickView: (product: ProductItem) => void;
 }
 
+/** true when viewport is below the desktop breakpoint (1024px) */
+function useCompactViewport() {
+  const [compact, setCompact] = useState(() =>
+    typeof window !== "undefined"
+      ? window.matchMedia("(max-width: 1023px)").matches
+      : false,
+  );
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 1023px)");
+    const read = () => setCompact(mq.matches);
+    read();
+    mq.addEventListener("change", read);
+    return () => mq.removeEventListener("change", read);
+  }, []);
+  return compact;
+}
+
+/** Mobile / tablet alternative to the 3D orbit: swipeable snap carousel */
+const ProductCarousel: React.FC<{
+  products: ProductItem[];
+  onQuickView: (p: ProductItem) => void;
+}> = ({ products, onQuickView }) => {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+
+  // back to first card whenever the list changes (filter)
+  useEffect(() => {
+    trackRef.current?.scrollTo({ left: 0 });
+    setActive(0);
+  }, [products]);
+
+  const onScroll = () => {
+    const el = trackRef.current;
+    if (!el) return;
+    const first = el.firstElementChild as HTMLElement | null;
+    if (!first) return;
+    const stride = first.offsetWidth + 16;
+    setActive(Math.round(el.scrollLeft / stride));
+  };
+
+  const goTo = (i: number) => {
+    const el = trackRef.current;
+    const first = el?.firstElementChild as HTMLElement | null;
+    if (!el || !first) return;
+    const idx = Math.max(0, Math.min(products.length - 1, i));
+    el.scrollTo({ left: idx * (first.offsetWidth + 16), behavior: "smooth" });
+  };
+
+  return (
+    <div className="relative w-full pb-2">
+      <div
+        ref={trackRef}
+        onScroll={onScroll}
+        className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-none px-6 sm:px-10 scroll-px-6 sm:scroll-px-10 pb-6"
+        style={{ WebkitOverflowScrolling: "touch" }}
+      >
+        {products.map((product) => (
+          <article
+            key={product.id}
+            className="snap-start shrink-0 w-[72vw] max-w-72 sm:w-64 sm:max-w-none flex flex-col rounded-3xl bg-white/70 border border-[#E2DDD2] overflow-hidden shadow-[0_18px_40px_-18px_rgba(30,24,18,0.25)]"
+          >
+            <button
+              type="button"
+              onClick={() => onQuickView(product)}
+              className="relative block w-full aspect-3/4 overflow-hidden bg-[#ECE8DF] cursor-pointer border-0 p-0"
+              aria-label={`Voir ${product.name}`}
+            >
+              <img
+                src={product.image}
+                alt={product.name}
+                loading="lazy"
+                draggable={false}
+                className="w-full h-full object-cover"
+              />
+              <span className="absolute top-3 left-3 max-w-[85%] truncate px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-[0.16em] bg-black/55 text-white backdrop-blur-md">
+                {product.tag}
+              </span>
+            </button>
+            <div className="flex flex-col gap-1 p-4">
+              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-taupe">
+                {product.category}
+              </span>
+              <h3 className="font-serif-luxury text-lg leading-snug font-medium text-obsidian">
+                {product.name}
+              </h3>
+              <span className="font-mono text-sm text-[#5A554E]">
+                {product.price} €
+              </span>
+              <button
+                type="button"
+                onClick={() => onQuickView(product)}
+                className="mt-3 w-full px-6 py-3 rounded-full bg-obsidian text-alabaster font-sans-clean text-xs font-medium uppercase tracking-[0.2em] active:scale-95 transition-transform flex items-center justify-center gap-2 cursor-pointer border border-[#1A1918]"
+              >
+                <ShoppingBag className="w-3.5 h-3.5" />
+                <span>Commander</span>
+              </button>
+            </div>
+          </article>
+        ))}
+        {/* trailing spacer so the last card can snap fully */}
+        <div className="shrink-0 w-2" aria-hidden />
+      </div>
+
+      <div className="flex items-center justify-center gap-4">
+        <button
+          type="button"
+          onClick={() => goTo(active - 1)}
+          disabled={active <= 0}
+          aria-label="Pièce précédente"
+          className="w-10 h-10 rounded-full border border-[#D5CFBE] bg-alabaster text-obsidian flex items-center justify-center disabled:opacity-30 cursor-pointer"
+        >
+          <ChevronLeft className="w-4 h-4" />
+        </button>
+        <span className="font-mono text-[11px] tracking-[0.25em] text-taupe tabular-nums">
+          {String(Math.min(active + 1, products.length)).padStart(2, "0")} /{" "}
+          {String(products.length).padStart(2, "0")}
+        </span>
+        <button
+          type="button"
+          onClick={() => goTo(active + 1)}
+          disabled={active >= products.length - 1}
+          aria-label="Pièce suivante"
+          className="w-10 h-10 rounded-full border border-[#D5CFBE] bg-alabaster text-obsidian flex items-center justify-center disabled:opacity-30 cursor-pointer"
+        >
+          <ChevronRight className="w-4 h-4" />
+        </button>
+      </div>
+    </div>
+  );
+};
+
 export const ShopSection: React.FC<ShopSectionProps> = ({ onQuickView }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>("TOUT");
 
@@ -253,6 +384,7 @@ export const ShopSection: React.FC<ShopSectionProps> = ({ onQuickView }) => {
   }, [filteredProducts, onQuickView]);
 
   const [activeIdx, setActiveIdx] = useState(0);
+  const compact = useCompactViewport();
 
   return (
     <section
@@ -296,6 +428,13 @@ export const ShopSection: React.FC<ShopSectionProps> = ({ onQuickView }) => {
         ))}
       </div>
 
+      {compact ? (
+        <ProductCarousel
+          products={filteredProducts}
+          onQuickView={onQuickView}
+        />
+      ) : (
+        <>
       {/* HaloReel 3D Pleine Largeur (Bord à Bord) et Très Grand Format */}
       <div className="relative w-full overflow-hidden">
         {/* Subtle luxury ambient halo backdrop */}
@@ -376,6 +515,8 @@ export const ShopSection: React.FC<ShopSectionProps> = ({ onQuickView }) => {
           className="h-187.5 sm:h-210 md:h-225 lg:h-235 w-full bg-transparent"
         />
       </div>
+        </>
+      )}
     </section>
   );
 };

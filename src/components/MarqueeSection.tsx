@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, useMemo } from 'react';
+import React, { useRef, useEffect, useMemo } from 'react';
 
 const ALL_IMAGES: string[] = [
   '/images/hero-img/look-01.webp',
@@ -16,7 +16,8 @@ const ALL_IMAGES: string[] = [
 
 export const MarqueeSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  const [offset, setOffset] = useState<number>(0);
+  const row1Ref = useRef<HTMLDivElement>(null);
+  const row2Ref = useRef<HTMLDivElement>(null);
 
   const row1Images = useMemo(() => {
     const row1 = ALL_IMAGES.slice(0, 9);
@@ -28,36 +29,35 @@ export const MarqueeSection: React.FC = () => {
     return [...row2, ...row2, ...row2];
   }, []);
 
+  // Transform is written straight to the DOM (no React re-render, no CSS
+  // transition) so the rows track the scroll 1:1 — avoids flicker on iOS.
+  // Offset is measured against a stable layout position (offsetTop based) so
+  // the iOS URL bar collapsing does not make the rows jump.
   useEffect(() => {
-    let ticking = false;
-
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          if (sectionRef.current) {
-            const rect = sectionRef.current.getBoundingClientRect();
-            const sectionTop = rect.top + window.scrollY;
-            const currentOffset = (window.scrollY - sectionTop + window.innerHeight) * 0.22;
-            setOffset(currentOffset);
-          }
-          ticking = false;
-        });
-        ticking = true;
-      }
+    let raf = 0;
+    const apply = () => {
+      raf = 0;
+      const section = sectionRef.current;
+      if (!section) return;
+      const rect = section.getBoundingClientRect();
+      const vh = window.innerHeight;
+      // progress: 0 when section enters the viewport bottom, grows while scrolling
+      const offset = (vh - rect.top) * 0.22;
+      if (row1Ref.current) row1Ref.current.style.transform = `translate3d(${offset - 200}px,0,0)`;
+      if (row2Ref.current) row2Ref.current.style.transform = `translate3d(${-(offset - 200)}px,0,0)`;
     };
-
-    handleScroll();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll, { passive: true });
-
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(apply);
+    };
+    apply();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      if (raf) cancelAnimationFrame(raf);
     };
   }, []);
-
-  const row1Transform = `translateX(${offset - 200}px)`;
-  const row2Transform = `translateX(${-(offset - 200)}px)`;
 
   return (
     <section
@@ -80,16 +80,14 @@ export const MarqueeSection: React.FC = () => {
       <div className="flex flex-col gap-4 w-full">
         {/* Row 1: moves RIGHT on scroll */}
         <div
-          className="flex gap-4 transition-transform duration-100 ease-out"
-          style={{
-            transform: row1Transform,
-            willChange: 'transform',
-          }}
+          ref={row1Ref}
+          className="flex gap-4"
+          style={{ willChange: 'transform', backfaceVisibility: 'hidden', marginLeft: -600 }}
         >
           {row1Images.map((src, index) => (
             <div
               key={`row1-${index}`}
-              className="relative w-85 sm:w-100 h-57.5 sm:h-66.25 shrink-0 rounded-2xl overflow-hidden bg-[#FAF8F5] border border-[#E4DEC3] shadow-[0_12px_32px_rgba(30,24,18,0.06)] group"
+              className="relative w-64 h-44 sm:w-100 sm:h-66.25 shrink-0 rounded-2xl overflow-hidden bg-[#FAF8F5] border border-[#E4DEC3] shadow-[0_12px_32px_rgba(30,24,18,0.06)] group"
             >
               <img
                 src={src}
@@ -109,16 +107,14 @@ export const MarqueeSection: React.FC = () => {
 
         {/* Row 2: moves LEFT on scroll */}
         <div
-          className="flex gap-4 transition-transform duration-100 ease-out"
-          style={{
-            transform: row2Transform,
-            willChange: 'transform',
-          }}
+          ref={row2Ref}
+          className="flex gap-4"
+          style={{ willChange: 'transform', backfaceVisibility: 'hidden', marginLeft: -600 }}
         >
           {row2Images.map((src, index) => (
             <div
               key={`row2-${index}`}
-              className="relative w-85 sm:w-100 h-57.5 sm:h-66.25 shrink-0 rounded-2xl overflow-hidden bg-[#FAF8F5] border border-[#E4DEC3] shadow-[0_12px_32px_rgba(30,24,18,0.06)] group"
+              className="relative w-64 h-44 sm:w-100 sm:h-66.25 shrink-0 rounded-2xl overflow-hidden bg-[#FAF8F5] border border-[#E4DEC3] shadow-[0_12px_32px_rgba(30,24,18,0.06)] group"
             >
               <img
                 src={src}

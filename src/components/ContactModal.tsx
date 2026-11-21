@@ -57,7 +57,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
             <button
               type="button"
               onClick={onClose}
-              className="absolute top-6 right-6 text-taupe hover:text-obsidian transition-colors p-2.5 rounded-full bg-white/70 border border-[#E2DDD2] hover:bg-white cursor-pointer shadow-xs"
+              className="absolute top-4 right-4 sm:top-6 sm:right-6 text-taupe hover:text-obsidian transition-colors p-2.5 rounded-full bg-white/70 border border-[#E2DDD2] hover:bg-white cursor-pointer shadow-xs"
             >
               <X className="w-5 h-5" />
             </button>
@@ -87,7 +87,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                 </div>
               </div>
             ) : (
-              <div>
+              <div className="pt-10 sm:pt-0">
                 <div className="mb-8">
                   <div className="chrome-badge inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-[0.2em] text-[#5A554E] mb-3">
                     <Sparkles className="w-3.5 h-3.5 text-taupe" />

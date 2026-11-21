@@ -163,7 +163,7 @@ export const TestimonialsSection: React.FC = () => {
         </div>
 
         {/* Cartes en disposition décalée (Stagger Cards) */}
-        <div className="w-full relative z-20">
+        <div className="relative z-20 w-[calc(100%+3rem)] -mx-6 sm:w-[calc(100%+5rem)] sm:-mx-10 lg:w-full lg:mx-0">
           <StaggerTestimonials
             items={SARTORIAL_TESTIMONIALS}
             onActiveChange={(item) => setActiveItem(item)}
