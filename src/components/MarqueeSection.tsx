@@ -63,7 +63,7 @@ export const MarqueeSection: React.FC = () => {
     <section
       ref={sectionRef}
       id="marquee"
-      className="w-full bg-[#F7F5F0] pt-16 sm:pt-24 pb-16 overflow-hidden border-t border-[#EAE5D9]"
+      className="w-full bg-background pt-16 sm:pt-24 pb-16 overflow-hidden border-t border-[#EAE5D9]"
     >
       {/* Clean Editorial Header (No slashes, no tags) */}
       <div className="max-w-6xl mx-auto px-6 sm:px-10 mb-8 sm:mb-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
@@ -72,7 +72,7 @@ export const MarqueeSection: React.FC = () => {
             Le Mouvement Sartorial
           </h3>
         </div>
-        <p className="text-xs sm:text-[13px] text-[#7A746B] font-sans-clean max-w-sm tracking-wide leading-relaxed">
+        <p className="text-xs sm:text-[13px] text-muted-foreground font-sans-clean max-w-sm tracking-wide leading-relaxed">
           L'alliance des laines nobles et des reflets précis d'accessoires chromés en mouvement.
         </p>
       </div>
@@ -87,7 +87,7 @@ export const MarqueeSection: React.FC = () => {
           {row1Images.map((src, index) => (
             <div
               key={`row1-${index}`}
-              className="relative w-64 h-44 sm:w-100 sm:h-66.25 shrink-0 rounded-2xl overflow-hidden bg-[#FAF8F5] border border-[#E4DEC3] shadow-[0_12px_32px_rgba(30,24,18,0.06)] group"
+              className="relative w-64 h-44 sm:w-100 sm:h-66.25 shrink-0 rounded-2xl overflow-hidden bg-card border border-[#E4DEC3] shadow-[0_12px_32px_rgba(30,24,18,0.06)] group"
             >
               <img
                 src={src}
@@ -114,7 +114,7 @@ export const MarqueeSection: React.FC = () => {
           {row2Images.map((src, index) => (
             <div
               key={`row2-${index}`}
-              className="relative w-64 h-44 sm:w-100 sm:h-66.25 shrink-0 rounded-2xl overflow-hidden bg-[#FAF8F5] border border-[#E4DEC3] shadow-[0_12px_32px_rgba(30,24,18,0.06)] group"
+              className="relative w-64 h-44 sm:w-100 sm:h-66.25 shrink-0 rounded-2xl overflow-hidden bg-card border border-[#E4DEC3] shadow-[0_12px_32px_rgba(30,24,18,0.06)] group"
             >
               <img
                 src={src}

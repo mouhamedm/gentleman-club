@@ -389,7 +389,7 @@ export const ShopSection: React.FC<ShopSectionProps> = ({ onQuickView }) => {
   return (
     <section
       id="shop"
-      className="relative w-full bg-[#F7F5F0] pt-16 sm:pt-24 pb-12 sm:pb-16 border-t border-[#EAE5D9] overflow-hidden"
+      className="relative w-full bg-background pt-16 sm:pt-24 pb-12 sm:pb-16 border-t border-[#EAE5D9] overflow-hidden"
     >
       {/* Section Header */}
       <div className="w-full px-6 sm:px-10 text-center max-w-4xl mx-auto mb-6 sm:mb-8">
@@ -468,14 +468,14 @@ export const ShopSection: React.FC<ShopSectionProps> = ({ onQuickView }) => {
                       {currentItem.title}
                     </span>
                     {currentItem.price !== undefined && (
-                      <span className="ml-2 font-mono text-xs text-[#7A746B] font-semibold">
+                      <span className="ml-2 font-mono text-xs text-muted-foreground font-semibold">
                         • {currentItem.price} €
                       </span>
                     )}
                   </div>
                 )}
 
-                <span className="text-xs text-[#7A746B] font-sans-clean mt-3 max-w-xs leading-relaxed">
+                <span className="text-xs text-muted-foreground font-sans-clean mt-3 max-w-xs leading-relaxed">
                   Glissez pour faire pivoter la roue • Cliquez sur une pièce pour
                   essayer
                 </span>

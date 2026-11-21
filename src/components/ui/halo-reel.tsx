@@ -423,7 +423,7 @@ function WheelCard({
         marginTop: -height / 2,
       }}
       className={cn(
-        "absolute overflow-hidden rounded-3xl shadow-[0_20px_45px_-12px_rgba(20,16,12,0.22)] transition-all duration-300 border border-[#D5CFBE]/70 bg-[#FAF8F5] cursor-pointer hover:border-[#1A1918] hover:shadow-[0_25px_55px_-10px_rgba(20,16,12,0.3)]"
+        "absolute overflow-hidden rounded-3xl shadow-[0_20px_45px_-12px_rgba(20,16,12,0.22)] transition-all duration-300 border border-[#D5CFBE]/70 bg-card cursor-pointer hover:border-[#1A1918] hover:shadow-[0_25px_55px_-10px_rgba(20,16,12,0.3)]"
       )}
     >
       {item.src ? (
@@ -456,7 +456,7 @@ function WheelCard({
         </div>
       ) : (
         <div
-          className="flex h-full w-full flex-col items-center justify-center gap-1 p-3 text-center bg-[#FAF8F5] text-[#1A1918]"
+          className="flex h-full w-full flex-col items-center justify-center gap-1 p-3 text-center bg-card text-[#1A1918]"
           style={{
             backgroundColor: item.bgColor,
             color: item.textColor,

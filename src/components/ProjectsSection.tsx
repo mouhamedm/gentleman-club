@@ -99,7 +99,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
   return (
     <section
       id="projects"
-      className="relative z-10 w-full bg-[#F7F5F0] rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] -mt-10 sm:-mt-12 md:-mt-14 pt-20 sm:pt-24 md:pt-32 pb-12 sm:pb-16 border-t border-[#EAE5D9]"
+      className="relative z-10 w-full bg-background rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] -mt-10 sm:-mt-12 md:-mt-14 pt-20 sm:pt-24 md:pt-32 pb-12 sm:pb-16 border-t border-[#EAE5D9]"
     >
       {/* Section Heading */}
       <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-8 mb-12 sm:mb-16 md:mb-20 text-center">
